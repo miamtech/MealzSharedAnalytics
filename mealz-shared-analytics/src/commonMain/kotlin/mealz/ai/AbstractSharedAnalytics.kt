@@ -37,7 +37,7 @@ abstract class AbstractSharedAnalytics {
             // Find the index of the next '/' to separate path segments
             val nextSlashIndex = pathWithoutURL.indexOf('/').takeIf { it!=-1 } ?: pathWithoutURL.length
             val part = pathWithoutURL.substring(0, nextSlashIndex)
-            // If the part is nor in the valid set of path segments or a number, throw an exception
+            // If the part is not in the valid set of path segments nor a number, throw an exception
             if (!validParts.contains("|$part|") && part.toIntOrNull() == null) {
                 throw IllegalArgumentException("Invalid path : \"$path\". \"$part\" is not a valid path part.")
             }
