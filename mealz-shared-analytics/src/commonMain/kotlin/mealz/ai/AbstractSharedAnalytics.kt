@@ -30,7 +30,7 @@ abstract class AbstractSharedAnalytics {
         // an empty path (mobile) so we assume it is valid
         if (!path.contains("/miam/")) return
 
-        val validParts = "||miam|recipes|liked|categories|my-meals|detail|replace-item|sponsor|meals-planner|catalog|results|basket-preview|finalize|"
+        val validParts = "||miam|recipes|liked|categories|my-meals|detail|replace-item|sponsor|meals-planner|catalog|results|basket-preview|finalize|onboarding|locator|"
         var pathWithoutURL = path.substringAfter("/miam/")
         // Not using a list is the lightest way to do it when compiled in JS
         while (pathWithoutURL.isNotEmpty()) {
