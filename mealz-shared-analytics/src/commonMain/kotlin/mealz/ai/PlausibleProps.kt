@@ -32,6 +32,8 @@ data class PlausibleProps(
     val total_products: String? = null,
     val client_order_id: String? = null,
     val supplier_id: String? = null,
+    // Locator
+    val supplier_name: String? = null,
     // Point Of Sale
     val pos_id: String? = null,
     val pos_name: String? = null,
@@ -46,6 +48,8 @@ data class PlausibleProps(
     val guests: String? = null,
     val uses_count: String? = null,
     val time_passed: String? = null,
+    // Onboarding
+    val steps_completed: String? = null,
     // Global
     val client_sdk_version: String? = null,
     val analytics_sdk_version: String? = null,
