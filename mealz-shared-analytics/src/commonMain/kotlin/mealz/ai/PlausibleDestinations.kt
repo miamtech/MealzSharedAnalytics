@@ -16,6 +16,8 @@ internal enum class PlausibleDestinations(val plausiblePath: String) {
     RECIPE_LIKE("recipe.like"),
     RECIPE_UNLIKE("recipe.unlike"),
     RECIPE_SPONSOR("recipe.sponsor"),
+    RECIPE_CLOSE("recipe.close"),
+    RECIPE_CONTINUE("recipe.continue"),
 
     // ---------------------------------- CATALOG ----------------------------------------------
     CATEGORY_SHOW("category.show"),
@@ -42,6 +44,11 @@ internal enum class PlausibleDestinations(val plausiblePath: String) {
     PLANNER_FINALIZE("planner.finalize"),
 
     // ------------------------------- STORE LOCATOR -------------------------------------------
+    POINT_OF_SALE_SEARCH("pos.search"),
     POINT_OF_SALE_SELECTED("pos.selected"),
-    SEARCH_STORE("search.store"),
+    LOCATOR_CLOSE("locator.close"),
+
+    // -------------------------------- ONBOARDING ---------------------------------------------
+    ONBOARDING_ACTION("onboarding.action"),
+    ONBOARDING_CLOSE("onboarding.close"),
 }

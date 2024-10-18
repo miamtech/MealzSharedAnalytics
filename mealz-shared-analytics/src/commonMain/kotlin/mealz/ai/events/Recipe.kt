@@ -85,3 +85,23 @@ fun sendRecipeSponsorEvent(path: String, recipeId: String) {
         PlausibleProps(recipe_id = recipeId)
     )
 }
+
+@JsExport
+@JsName("sendRecipeContinueEvent")
+fun sendRecipeContinueEvent(path: String, recipeId: String, timePassed: String) {
+    SharedAnalytics.sendPlausibleRequest(
+        PlausibleDestinations.RECIPE_CONTINUE.plausiblePath,
+        path,
+        PlausibleProps(recipe_id = recipeId, time_passed = timePassed)
+    )
+}
+
+@JsExport
+@JsName("sendRecipeCloseEvent")
+fun sendRecipeCloseEvent(path: String, recipeId: String, timePassed: String) {
+    SharedAnalytics.sendPlausibleRequest(
+        PlausibleDestinations.RECIPE_CLOSE.plausiblePath,
+        path,
+        PlausibleProps(recipe_id = recipeId, time_passed = timePassed)
+    )
+}
