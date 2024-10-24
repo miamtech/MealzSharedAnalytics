@@ -20,8 +20,8 @@ jobs:
           # Extract the branch name from GITHUB_REF
           BRANCH_NAME="${GITHUB_HEAD_REF}"
           
-          # Use regex to extract the version number (assuming format like release/x.y.z)
-          if [[ "$BRANCH_NAME" =~ release/([0-9]+\.[0-9]+\.[0-9]+) ]]; then
+          # Use regex to extract the version number (assuming format like release/x.y.z or release/x.y.z-alpha2)
+          if [[ "$BRANCH_NAME" =~ release/([0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z]+[0-9]*)?) ]]; then
             VERSION="${BASH_REMATCH[1]}"
             echo "Version extracted: $VERSION"
             echo "version=$VERSION" >> $GITHUB_OUTPUT
