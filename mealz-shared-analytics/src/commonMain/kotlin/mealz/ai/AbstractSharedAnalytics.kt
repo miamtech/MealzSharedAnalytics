@@ -1,5 +1,8 @@
 package ai.mealz.analytics
 
+import ai.mealz.analytics.utils.PlatformList
+import ai.mealz.analytics.utils.splitToPlatformList
+
 typealias onEmitFunction = (PlausibleEvent) -> Unit
 
 abstract class AbstractSharedAnalytics {
@@ -30,22 +33,16 @@ abstract class AbstractSharedAnalytics {
         // an empty path (mobile) so we assume it is valid
         if (!path.contains("/miam/")) return
 
-        val validParts = "||miam|recipes|liked|categories|my-meals|detail|replace-item|sponsor|meals-planner|catalog|results|basket-preview|finalize|onboarding|locator|"
-        var pathWithoutURL = path.substringAfter("/miam/")
-        // Not using a list is the lightest way to do it when compiled in JS
-        while (pathWithoutURL.isNotEmpty()) {
-            // Find the index of the next '/' to separate path segments
-            val nextSlashIndex = pathWithoutURL.indexOf('/').takeIf { it!=-1 } ?: pathWithoutURL.length
-            val part = pathWithoutURL.substring(0, nextSlashIndex)
-            // If the part is not in the valid set of path segments nor a number, throw an exception
-            if (!validParts.contains("|$part|") && part.toIntOrNull() == null) {
+        // Only keep Mealz's part
+        val pathSplit = path.substringAfter("/miam/").splitToPlatformList('/')
+        val validParts = PlatformList("", "recipes", "liked", "categories", "my-meals", "detail", "replace-item", "sponsor",
+            "meals-planner", "catalog", "results", "basket-preview", "finalize", "onboarding", "locator")
+
+        pathSplit.forEach { part ->
+            if (!validParts.contains(part) && part.toIntOrNull() == null) {
+                // If the part is not in the valid set of path segments nor a number, throw an exception
                 throw IllegalArgumentException("Invalid path : \"$path\". \"$part\" is not a valid path part.")
             }
-
-            // Remove the processed part and move to the next segment if there's more path left
-            pathWithoutURL = if (nextSlashIndex < pathWithoutURL.length) {
-                pathWithoutURL.substring(nextSlashIndex + 1)
-            } else "" // Path completely parsed
         }
     }
 
