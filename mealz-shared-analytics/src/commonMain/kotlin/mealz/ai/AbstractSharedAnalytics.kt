@@ -1,5 +1,6 @@
 package ai.mealz.analytics
 
+import ai.mealz.analytics.handler.LogHandler
 import ai.mealz.analytics.utils.PlatformList
 import ai.mealz.analytics.utils.splitToPlatformList
 
@@ -47,21 +48,20 @@ abstract class AbstractSharedAnalytics {
     }
 
     internal fun buildAndSendPlausibleRequest(eventType: String, path: String, props: PlausibleProps) {
-        if (!alreadyInitialized) return
+        if (!alreadyInitialized) return LogHandler.warn("Tried to send event before analytics initialization")
 
         validatePath(path)
-        val fullProps = props.copy(
-            client_sdk_version = clientSDKVersion,
-            analytics_sdk_version = analyticsSDKVersion,
-            platform = getPlatform().name,
-            abTestKey = abTestKey,
-            affiliate = affiliate
-        )
+
+        props["client_sdk_version"] = clientSDKVersion
+        props["analytics_sdk_version"] = analyticsSDKVersion
+        props["platform"] = getPlatform().name
+        props["abTestKey"] = abTestKey
+        props["affiliate"] = affiliate
         val event = PlausibleEvent(
             eventType,
             path,
             domain,
-            fullProps
+            props.value.value
         )
         onEmit(event)
         sendRequest(event)

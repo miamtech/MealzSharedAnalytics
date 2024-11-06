@@ -17,12 +17,10 @@ def generate_ts_fun_declaration(kotlin_signature, js_function_name, output_file_
               when "String" then "string"
               when "Int" then "number"
               when "Boolean" then "boolean"
-              when "PlausibleEvent" then
-                  "PlausibleEvent"
-              when "PlausibleProps" then
-                  "PlausibleProps"
-              when "onEmitFunction" then
-                  "(event: PlausibleEvent) => void"
+              when "PlausibleEvent" then "PlausibleEvent"
+              when "PlausibleProps" then "PlausibleProps"
+              when "onEmitFunction" then "(event: PlausibleEvent) => void"
+              when "JsObject" then "PlausibleProps"
               else "any" # You can expand this for more types
               end
 
@@ -45,15 +43,8 @@ end
 
 # Method to process Kotlin files in a directory
 def process_kotlin_files(directory, output_folder)
-  # Create the output folder if it doesn't exist
-  FileUtils.mkdir_p(output_folder)
-
   # Define the output file path
   output_file_path = File.join(output_folder, "main.d.ts")
-
-  # Create the empty file if it doesn't exist
-  File.open(output_file_path, 'w') do |file|
-  end
 
   Dir.glob(File.join(directory, '**/*.kt')).each do |file_path|
     puts "Processing file: #{file_path}"
@@ -86,9 +77,26 @@ def process_kotlin_files(directory, output_folder)
   end
 end
 
-# Define input directory and output directory
-input_directory = File.expand_path('../../mealz-shared-analytics/src/commonMain/kotlin/mealz/ai', __dir__)
-output_directory = File.expand_path('../../mealz-shared-analytics/dist', __dir__)
 
-# Process the Kotlin files to generate TypeScript files
+# Method to process Kotlin files in a directory
+def create_output_file(output_folder)
+  # Create the output folder if it doesn't exist
+  FileUtils.mkdir_p(output_folder)
+
+  # Define the output file path
+  output_file_path = File.join(output_folder, "main.d.ts")
+
+  # Create the empty file if it doesn't exist
+  File.open(output_file_path, 'w') do |file|
+  end
+end
+
+# Define input directory and output directory
+output_directory = File.expand_path('../../mealz-shared-analytics/dist', __dir__)
+create_output_file(output_directory)
+
+input_directory = File.expand_path('../../mealz-shared-analytics/src/commonMain/kotlin/mealz/ai', __dir__)
+process_kotlin_files(input_directory, output_directory)
+
+input_directory = File.expand_path('../../mealz-shared-analytics/src/jsMain/kotlin/mealz/ai', __dir__)
 process_kotlin_files(input_directory, output_directory)

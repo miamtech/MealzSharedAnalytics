@@ -6,6 +6,8 @@ import ai.mealz.analytics.utils.PlatformMap
 open class PlatformMapShared<K, V>(vararg elements: Pair<K, V>) : IPlatformMap<K, V>, AbstractMutableMap<K, V>() {
     private val map = mutableMapOf(*elements)
 
+    override val value: Any get() = map
+
     override val entries: MutableSet<MutableMap.MutableEntry<K, V>>
         get() = map.entries
 
@@ -18,10 +20,6 @@ open class PlatformMapShared<K, V>(vararg elements: Pair<K, V>) : IPlatformMap<K
 
     override operator fun get(key: K): V? {
         return map[key]
-    }
-
-    override operator fun plus(element: PlatformMap<K, V>): PlatformMap<K, V> {
-        return this + element
     }
 
     override fun put(key: K, value: V): V? {
@@ -38,5 +36,9 @@ open class PlatformMapShared<K, V>(vararg elements: Pair<K, V>) : IPlatformMap<K
         map.forEach {
             predicate(it.key, it.value)
         }
+    }
+
+    fun toMutableMap(): MutableMap<K, V> {
+        return map
     }
 }

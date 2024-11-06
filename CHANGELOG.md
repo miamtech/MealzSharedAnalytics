@@ -1,4 +1,5 @@
-## 2.1.0
+## 3.0.0
+[BRK][FEA] Replaced all event sending functions by generic EventSender.sendEvent
 [FEA] Add PlatformList wrapper so that we can use native lists in JS
 [FEA] Add PlatformMap wrapper so that we can use native objects in JS
 [FIX] CI/CD can now recognize alpha versions

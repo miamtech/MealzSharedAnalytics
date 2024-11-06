@@ -1,59 +1,69 @@
 package ai.mealz.analytics
 
-import kotlin.js.JsExport
-import kotlin.js.JsName
+import ai.mealz.analytics.utils.PlatformList
+import ai.mealz.analytics.utils.PlatformMap
 
-/*                 /!\ Must update `SharedAnalytics.ios.kt` too /!\                 */
+class PlausibleProps(initialProps: PlatformMap<String, String?> = PlatformMap()) {
+    private val props = PlatformMap(
+        // Recipe
+        "recipe_id" to initialProps["recipe_id"],
+        // Catalog
+        "category_id" to initialProps["category_id"],
+        // Entry / Item / Product
+        "entry_name" to initialProps["entry_name"],
+        "item_id" to initialProps["item_id"],
+        "ext_item_id" to initialProps["ext_item_id"],
+        "item_ean" to initialProps["item_ean"],
+        "old_item_id" to initialProps["old_item_id"],
+        "old_item_ext_id" to initialProps["old_item_ext_id"],
+        "old_item_ean" to initialProps["old_item_ean"],
+        "new_item_id" to initialProps["new_item_id"],
+        "new_item_ext_id" to initialProps["new_item_ext_id"],
+        "new_item_ean" to initialProps["new_item_ean"],
+        "product_quantity" to initialProps["product_quantity"],
+        // Basket / Payment
+        "basket_id" to initialProps["basket_id"],
+        "miam_amount" to initialProps["miam_amount"],
+        "total_amount" to initialProps["total_amount"],
+        "miam_products" to initialProps["miam_products"],
+        "total_products" to initialProps["total_products"],
+        "client_order_id" to initialProps["client_order_id"],
+        "supplier_id" to initialProps["supplier_id"],
+        // Locator
+        "supplier_name" to initialProps["supplier_name"],
+        // Point Of Sale
+        "pos_id" to initialProps["pos_id"],
+        "pos_name" to initialProps["pos_name"],
+        // Search
+        "search_term" to initialProps["search_term"],
+        "stores_found_count" to initialProps["stores_found_count"],
+        // Meal Planner
+        "budget" to initialProps["budget"],
+        "budget_user" to initialProps["budget_user"],
+        "budget_planner" to initialProps["budget_planner"],
+        "recipe_count" to initialProps["recipe_count"],
+        "guests" to initialProps["guests"],
+        "uses_count" to initialProps["uses_count"],
+        "time_passed" to initialProps["time_passed"],
+        // Onboarding
+        "steps_completed" to initialProps["steps_completed"],
+        // Global
+        "client_sdk_version" to initialProps["client_sdk_version"],
+        "analytics_sdk_version" to initialProps["analytics_sdk_version"],
+        "platform" to initialProps["platform"],
+        "affiliate" to initialProps["affiliate"],
+        "abTestKey" to initialProps["abTestKey"]
+    )
 
-@JsExport
-@JsName("PlausibleProps")
-data class PlausibleProps(
-    // Recipe
-    val recipe_id: String? = null,
-    // Catalog
-    val category_id: String? = null,
-    // Entry / Item / Product
-    val entry_name: String? = null,
-    val item_id: String? = null,
-    val ext_item_id: String? = null,
-    val item_ean: String? = null,
-    val old_item_id: String? = null,
-    val old_item_ext_id: String? = null,
-    val old_item_ean: String? = null,
-    val new_item_id: String? = null,
-    val new_item_ext_id: String? = null,
-    val new_item_ean: String? = null,
-    val product_quantity: String? = null,
-    // Basket / Payment
-    val basket_id: String? = null,
-    val miam_amount: String? = null,
-    val total_amount: String? = null,
-    val miam_products: String? = null,
-    val total_products: String? = null,
-    val client_order_id: String? = null,
-    val supplier_id: String? = null,
-    // Locator
-    val supplier_name: String? = null,
-    // Point Of Sale
-    val pos_id: String? = null,
-    val pos_name: String? = null,
-    // Search
-    val search_term: String? = null,
-    val stores_found_count: String? = null,
-    // Meal Planner
-    val budget: String? = null,
-    val budget_user: String? = null,
-    val budget_planner: String? = null,
-    val recipe_count: String? = null,
-    val guests: String? = null,
-    val uses_count: String? = null,
-    val time_passed: String? = null,
-    // Onboarding
-    val steps_completed: String? = null,
-    // Global
-    val client_sdk_version: String? = null,
-    val analytics_sdk_version: String? = null,
-    val platform: String? = null,
-    val affiliate: String? = null,
-    val abTestKey: String? = null
-)
+    val value get() = props
+
+    operator fun get(key: String): String? = props[key]
+
+    operator fun set(key: String, value: String?) {
+        this.props[key] = value
+    }
+
+    internal fun areValidForEvent(mandatoryPropsForEvent: PlatformList<String>): Boolean {
+        return mandatoryPropsForEvent.all { key -> props[key] != null }
+    }
+}
