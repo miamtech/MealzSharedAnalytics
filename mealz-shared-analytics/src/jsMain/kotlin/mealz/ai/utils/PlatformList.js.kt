@@ -21,6 +21,10 @@ actual class PlatformList<T> actual constructor(vararg elements: T) : IPlatformL
         array.forEach(predicate)
     }
 
+    actual override fun all(predicate: (element: T) -> Boolean): Boolean {
+        return array.every(predicate) as Boolean
+    }
+
     actual override fun push(element: T) {
         array.push(element)
     }

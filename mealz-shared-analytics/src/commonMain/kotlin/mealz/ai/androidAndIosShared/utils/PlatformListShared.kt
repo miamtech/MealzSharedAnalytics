@@ -16,6 +16,10 @@ open class PlatformListShared<T>(vararg elements: T) : IPlatformList<T>, Abstrac
         array.forEach(predicate)
     }
 
+    override fun all(predicate: (element: T) -> Boolean): Boolean {
+        return array.all(predicate)
+    }
+
     override fun push(element: T) {
         this.add(element)
     }
