@@ -37,11 +37,9 @@ abstract class AbstractSharedAnalytics {
 
         // Only keep Mealz's part
         val pathSplit = path.substringAfter("/miam/").splitToPlatformList('/')
-        val validParts = PlatformList("", "recipes", "liked", "categories", "my-meals", "detail", "replace-item", "sponsor",
-            "meals-planner", "catalog", "results", "basket-preview", "finalize", "onboarding", "locator")
 
         pathSplit.forEach { part ->
-            if (!validParts.contains(part) && part.toIntOrNull() == null) {
+            if (!VALID_PATH_PARTS.contains(part) && part.toIntOrNull() == null) {
                 // If the part is not in the valid set of path segments nor a number, throw an exception
                 throw IllegalArgumentException("Invalid path : \"$path\". \"$part\" is not a valid path part.")
             }
@@ -70,5 +68,27 @@ abstract class AbstractSharedAnalytics {
 
     companion object {
         internal const val PLAUSIBLE_URL: String = "https://plausible.io/api/event"
+        private val VALID_PATH_PARTS = PlatformList(
+            "",
+            "basket",
+            "basket-preview",
+            "catalog",
+            "categories",
+            "cooking",
+            "finalize",
+            "item-selector",
+            "liked",
+            "locator",
+            "meals-planner",
+            "onboarding",
+            "ordered",
+            "orders",
+            "preferences",
+            "products",
+            "recipes",
+            "results",
+            "shopping",
+            "sponsor"
+        )
     }
 }
