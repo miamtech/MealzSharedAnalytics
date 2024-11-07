@@ -4,7 +4,7 @@ import ai.mealz.analytics.utils.PlatformList
 import ai.mealz.analytics.utils.PlatformMap
 
 object EventService : EventSender {
-    override fun sendEvent(name: String, path: String, props: PlatformMap<String, String?>) {
+    override fun sendEvent(name: String, path: String, journey: String, props: PlatformMap<String, String?>) {
         PROPS_FOR_EVENT[name]?.let { propsForEvent ->
             propsForEvent["mandatory"]?.let { mandatoryProps ->
                 if (!props.areValidForEvent(mandatoryProps)) {
@@ -13,6 +13,7 @@ object EventService : EventSender {
                 SharedAnalytics.sendPlausibleRequest(
                     name,
                     path,
+                    journey,
                     props
                 )
             } ?: error("No mandatory props found for $name")
@@ -136,7 +137,7 @@ object EventService : EventSender {
 }
 
 interface EventSender {
-    fun sendEvent(name: String, path: String, props: PlatformMap<String, String?>)
+    fun sendEvent(name: String, path: String, journey: String, props: PlatformMap<String, String?>)
 }
 
 private fun propsOf(

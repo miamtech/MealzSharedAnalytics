@@ -46,16 +46,24 @@ abstract class AbstractSharedAnalytics {
         }
     }
 
-    internal fun buildAndSendPlausibleRequest(eventType: String, path: String, props: PlatformMap<String, String?>) {
+    private fun validateJourney(journey: String) {
+        if (!VALID_JOURNEYS.contains(journey)) {
+            throw IllegalArgumentException("Invalid journey : \"$journey\". Valid values are $VALID_JOURNEYS")
+        }
+    }
+
+    internal fun buildAndSendPlausibleRequest(eventType: String, path: String, journey: String, props: PlatformMap<String, String?>) {
         if (!alreadyInitialized) return LogHandler.warn("Tried to send event before analytics initialization")
 
         validatePath(path)
+        validateJourney(journey)
 
         props["client_sdk_version"] = clientSDKVersion
         props["analytics_sdk_version"] = analyticsSDKVersion
         props["platform"] = getPlatform().name
         props["abTestKey"] = abTestKey
         props["affiliate"] = affiliate
+        props["journey"] = journey
         val event = PlausibleEvent(
             eventType,
             path,
@@ -90,5 +98,6 @@ abstract class AbstractSharedAnalytics {
             "shopping",
             "sponsor"
         )
+        val VALID_JOURNEYS = PlatformList("mealz-space", "shelves", "search", "")
     }
 }
