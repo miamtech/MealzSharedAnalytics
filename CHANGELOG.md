@@ -1,6 +1,8 @@
 ## 3.0.0
 [BRK][FEA] Replaced PlausibleProps by `MutableMap<String, String?>` in mobile and `{ [key: string]: string }` in js
 [BRK][FEA] Replaced all event sending functions by generic EventSender.sendEvent
+[BRK][FEA] Renamed pos.* events to locator.* 
+[FEA] Add new events
 [FEA] Add PlatformList wrapper so that we can use native lists in JS
 [FEA] Add PlatformMap wrapper so that we can use native objects in JS
 [FIX] CI/CD can now recognize alpha versions
