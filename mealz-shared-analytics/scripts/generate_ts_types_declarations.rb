@@ -5,7 +5,7 @@ def camelize(str)
   str.gsub(/(?:^|_)([a-z])/) { $1.upcase }
 end
 
-# Method to generate a TypeScript interface from a Kotlin data class
+# Method to generate a TypeScript interface from a Kotlin class
 def generate_ts_interface(data_class_name, properties, output_file_path)
   ts_interface_params = properties.map do |property|
     name, type = property.split(":").map(&:strip)
@@ -22,12 +22,10 @@ def generate_ts_interface(data_class_name, properties, output_file_path)
               when "String" then "string"
               when "Int", "Long", "Double", "Float" then "number"
               when "Boolean" then "boolean"
-              when "PlausibleEvent" then
-                  "PlausibleEvent"
-              when "PlausibleProps" then
-                  "PlausibleProps"
-              when "onEmitFunction" then
-                  "(event: PlausibleEvent) => void"
+              when "PlausibleEvent" then "PlausibleEvent"
+              when "PlausibleProps" then "PlausibleProps"
+              when "Any" then "PlausibleProps" # See PlausibleEvent.kt
+              when "onEmitFunction" then "(event: PlausibleEvent) => void"
               else "any" # You can expand this for more types
               end
 
@@ -46,7 +44,7 @@ def generate_ts_interface(data_class_name, properties, output_file_path)
   puts "TypeScript interface generated at: #{output_file_path}"
 end
 
-# Method to process Kotlin files in a directory and find data classes with @JsName
+# Method to process Kotlin files in a directory and find classes with @JsName
 def process_kotlin_files(directory, output_folder)
   # Create the output folder if it doesn't exist
   FileUtils.mkdir_p(output_folder)
@@ -59,12 +57,12 @@ def process_kotlin_files(directory, output_folder)
     lines = File.readlines(file_path)
 
     lines.each_with_index do |line, index|
-      if line =~ /@JsName/ && lines[index + 1] =~ /data class/ # Look for @JsName followed by data class
-        # Extract data class name
-        data_class_name = lines[index + 1].match(/data class (\w+)/)[1]
-        puts "Found data class: #{data_class_name} in #{file_path}"
+      if line =~ /@JsName/ && lines[index + 1] =~ /class / # Look for @JsName followed by class
+        # Extract class name
+        class_name = lines[index + 1].match(/class (\w+)/)[1]
+        puts "Found class: #{class_name} in #{file_path}"
 
-        # Collect all properties of the data class
+        # Collect all properties of the class
         properties = []
         index += 2
         while index < lines.size
@@ -76,7 +74,7 @@ def process_kotlin_files(directory, output_folder)
         end
 
         # Generate the TypeScript interface
-        generate_ts_interface(data_class_name, properties, output_file_path)
+        generate_ts_interface(class_name, properties, output_file_path)
       end
     end
   end

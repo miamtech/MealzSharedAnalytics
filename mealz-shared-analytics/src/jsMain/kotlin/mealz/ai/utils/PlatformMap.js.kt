@@ -3,6 +3,8 @@ package ai.mealz.analytics.utils
 actual class PlatformMap<K, V> actual constructor(vararg elements: Pair<K, V>) : IPlatformMap<K, V> {
     private val map = js("{}")
 
+    actual override val value: Any get() = map as Any
+
     init {
         for (element in elements) {
             this.put(element.first, element.second)
@@ -31,20 +33,6 @@ actual class PlatformMap<K, V> actual constructor(vararg elements: Pair<K, V>) :
         return map[key] as? V
     }
 
-    actual override operator fun plus(element: PlatformMap<K, V>): PlatformMap<K, V> {
-        val newMap = PlatformMap<K, V>()
-
-        this.forEach { key, value ->
-            newMap[key] = value
-        }
-
-        element.forEach { key, value ->
-            newMap[key] = value
-        }
-
-        return newMap
-    }
-
     actual override operator fun set(key: K, value: V) {
         map[key] = value
     }
@@ -55,6 +43,16 @@ actual class PlatformMap<K, V> actual constructor(vararg elements: Pair<K, V>) :
 
     actual override fun forEach(predicate: (key: K, value: V) -> Unit) {
         Object.entries(map).forEach { entry: dynamic -> predicate(entry[0] as K, entry[1] as V)}
+    }
+
+    companion object {
+        fun <K, V> fromNative(obj: dynamic): PlatformMap<K, V> {
+            val map = PlatformMap<K, V>()
+            for (key in js("Object.keys(obj)")) {
+                map[key as K] = obj[key] as V
+            }
+            return map
+        }
     }
 }
 

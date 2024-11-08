@@ -27,6 +27,7 @@ build_js_output:
 build_dist_folder:
 	cd mealz-shared-analytics && \
 	ruby scripts/generate_ts_fun_declarations.rb && \
+	ruby scripts/generate_ts_props_interface.rb && \
 	ruby scripts/generate_ts_types_declarations.rb && \
 	cp build/kotlin-webpack/js/productionExecutable/main.js dist/main.js && \
 	sed 's/"##VERSION##"/"$(VERSION)"/' build/processedResources/js/main/package.json > dist/package.json && \
