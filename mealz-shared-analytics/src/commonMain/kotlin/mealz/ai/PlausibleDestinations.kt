@@ -17,7 +17,6 @@ internal enum class PlausibleDestinations(val plausiblePath: String) {
     RECIPE_CHANGE_GUESTS("recipe.change-guests"),
     RECIPE_LIKE("recipe.like"),
     RECIPE_UNLIKE("recipe.unlike"),
-    RECIPE_SPONSOR("recipe.sponsor"),
     RECIPE_CLOSE("recipe.close"),
     RECIPE_CONTINUE("recipe.continue"),
 
@@ -44,6 +43,7 @@ internal enum class PlausibleDestinations(val plausiblePath: String) {
     // ----------------------------------- LIKED -----------------------------------------------
     LIKED_DISPLAY("liked.display"),
     LIKED_BACK("liked.back"),
+    LIKED_SEARCH("liked.search"),
 
     // ---------------------------------- ORDERS -----------------------------------------------
     ORDERS_DISPLAY("orders.display"),
@@ -75,11 +75,11 @@ internal enum class PlausibleDestinations(val plausiblePath: String) {
     ENTRY_REPLACED("entry.replaced"),
     ENTRY_CHANGE_QUANTITY("entry.change-quantity"),
     ENTRY_IGNORE("entry.ignore"),
-    ENTRY_SEARCH("entry.search"),
 
     // ------------------------------- ITEM SELECTOR -------------------------------------------
     ITEM_SELECTOR_BACK("item-selector.back"),
     ITEM_SELECTOR_CLOSE("item-selector.close"),
+    ITEM_SELECTOR_SEARCH("item-selector.search"),
 
     // ---------------------------------- PAYMENT ----------------------------------------------
     PAYMENT_STARTED("payment.started"),
