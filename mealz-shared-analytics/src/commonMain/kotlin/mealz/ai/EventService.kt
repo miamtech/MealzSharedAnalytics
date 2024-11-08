@@ -43,10 +43,10 @@ object EventService : EventSender {
         PlausibleDestinations.CATEGORY_DISPLAY.plausiblePath to propsOf(PlatformList("category_id"), PlatformList()),
 
         // ---------------------------------- PRODUCT ----------------------------------------------
-        PlausibleDestinations.BASKET_ENTRY_ADD.plausiblePath to propsOf(PlatformList("entry_name", "recipe_id", "item_id", "ext_item_id", "item_ean", "product_quantity"), PlatformList("recipe_id")),
-        PlausibleDestinations.BASKET_ENTRY_DELETE.plausiblePath to propsOf(PlatformList("entry_name", "recipe_id", "item_id", "ext_item_id", "item_ean", "product_quantity"), PlatformList("recipe_id")),
-        PlausibleDestinations.BASKET_ENTRY_REPLACE.plausiblePath to propsOf(PlatformList("entry_name", "recipe_id", "new_item_id", "new_item_ext_id", "new_item_ean"), PlatformList("old_item_id", "old_item_ext_id", "old_item_ean", "product_quantity", "search_term", "recipe_id")),
-        PlausibleDestinations.BASKET_ENTRY_CHANGE_QUANTITY.plausiblePath to propsOf(PlatformList("entry_name", "recipe_id", "item_id", "ext_item_id", "item_ean", "product_quantity"), PlatformList("recipe_id")),
+        PlausibleDestinations.ENTRY_ADD.plausiblePath to propsOf(PlatformList("entry_name", "recipe_id", "item_id", "ext_item_id", "item_ean", "product_quantity"), PlatformList("recipe_id")),
+        PlausibleDestinations.ENTRY_DELETE.plausiblePath to propsOf(PlatformList("entry_name", "recipe_id", "item_id", "ext_item_id", "item_ean", "product_quantity"), PlatformList("recipe_id")),
+        PlausibleDestinations.ENTRY_REPLACE.plausiblePath to propsOf(PlatformList("entry_name", "recipe_id", "new_item_id", "new_item_ext_id", "new_item_ean"), PlatformList("old_item_id", "old_item_ext_id", "old_item_ean", "product_quantity", "search_term", "recipe_id")),
+        PlausibleDestinations.ENTRY_CHANGE_QUANTITY.plausiblePath to propsOf(PlatformList("entry_name", "recipe_id", "item_id", "ext_item_id", "item_ean", "product_quantity"), PlatformList("recipe_id")),
 
         // ---------------------------------- PAYMENT ----------------------------------------------
         PlausibleDestinations.PAYMENT_STARTED.plausiblePath to propsOf(PlatformList("basket_id", "miam_amount", "total_amount", "pos_id", "pos_name", "recipe_count", "miam_products"), PlatformList("total_products", "client_order_id")),
@@ -63,8 +63,8 @@ object EventService : EventSender {
         PlausibleDestinations.PLANNER_FINALIZE.plausiblePath to propsOf(PlatformList("budget_user", "budget_planner", "recipe_count", "guests"), PlatformList()),
 
         // ------------------------------- STORE LOCATOR -------------------------------------------
-        PlausibleDestinations.POINT_OF_SALE_SEARCH.plausiblePath to propsOf(PlatformList("search_term", "stores_found_count"), PlatformList()),
-        PlausibleDestinations.POINT_OF_SALE_SELECTED.plausiblePath to propsOf(PlatformList("pos_id", "pos_name", "supplier_name"), PlatformList()),
+        PlausibleDestinations.LOCATOR_SEARCH.plausiblePath to propsOf(PlatformList("search_term", "stores_found_count"), PlatformList()),
+        PlausibleDestinations.LOCATOR_SELECT.plausiblePath to propsOf(PlatformList("pos_id", "pos_name", "supplier_name"), PlatformList()),
         PlausibleDestinations.LOCATOR_CLOSE.plausiblePath to propsOf(PlatformList("time_passed"), PlatformList()),
 
         // -------------------------------- ONBOARDING ---------------------------------------------
