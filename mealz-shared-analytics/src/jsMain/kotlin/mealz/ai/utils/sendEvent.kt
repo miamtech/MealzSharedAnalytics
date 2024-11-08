@@ -9,6 +9,6 @@ private typealias JsObject = JsMap<String, String?>
 @OptIn(ExperimentalJsCollectionsApi::class)
 @JsExport
 @JsName("sendEvent")
-fun sendEvent(name: String, path: String, props: JsObject) {
-    EventService.sendEvent(name, path, PlatformMap.fromNative(props))
+fun sendEvent(name: String, path: String, journey: String, props: JsObject) {
+    EventService.sendEvent(name, path, journey, PlatformMap.fromNative(props))
 }
