@@ -2,6 +2,7 @@ package ai.mealz.analytics
 
 import ai.mealz.analytics.handler.LogHandler
 import ai.mealz.analytics.utils.PlatformList
+import ai.mealz.analytics.utils.PlatformMap
 import ai.mealz.analytics.utils.splitToPlatformList
 
 typealias onEmitFunction = (PlausibleEvent) -> Unit
@@ -47,7 +48,7 @@ abstract class AbstractSharedAnalytics {
         }
     }
 
-    internal fun buildAndSendPlausibleRequest(eventType: String, path: String, props: PlausibleProps) {
+    internal fun buildAndSendPlausibleRequest(eventType: String, path: String, props: PlatformMap<String, String?>) {
         if (!alreadyInitialized) return LogHandler.warn("Tried to send event before analytics initialization")
 
         validatePath(path)
@@ -61,7 +62,7 @@ abstract class AbstractSharedAnalytics {
             eventType,
             path,
             domain,
-            props.value.value
+            props.value
         )
         onEmit(event)
         sendRequest(event)

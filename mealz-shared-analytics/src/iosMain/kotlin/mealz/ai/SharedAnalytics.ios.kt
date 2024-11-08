@@ -1,6 +1,7 @@
 package ai.mealz.analytics
 
 import ai.mealz.analytics.handler.LogHandler
+import ai.mealz.analytics.utils.PlatformMap
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.request.post
@@ -61,7 +62,7 @@ actual object SharedAnalytics : AbstractSharedAnalytics() {
         }
     }
 
-    actual fun sendPlausibleRequest(plausiblePath: String, path: String, plausibleProps: PlausibleProps) {
+    actual fun sendPlausibleRequest(plausiblePath: String, path: String, plausibleProps: PlatformMap<String, String?>) {
         this.buildAndSendPlausibleRequest(plausiblePath, path, plausibleProps)
     }
 

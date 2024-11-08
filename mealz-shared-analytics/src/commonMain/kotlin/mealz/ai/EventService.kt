@@ -4,7 +4,7 @@ import ai.mealz.analytics.utils.PlatformList
 import ai.mealz.analytics.utils.PlatformMap
 
 object EventService : EventSender {
-    override fun sendEvent(name: String, path: String, props: PlausibleProps) {
+    override fun sendEvent(name: String, path: String, props: PlatformMap<String, String?>) {
         PROPS_FOR_EVENT[name]?.let { propsForEvent ->
             propsForEvent["mandatory"]?.let { mandatoryProps ->
                 if (!props.areValidForEvent(mandatoryProps)) {
@@ -74,7 +74,7 @@ object EventService : EventSender {
 }
 
 interface EventSender {
-    fun sendEvent(name: String, path: String, props: PlausibleProps)
+    fun sendEvent(name: String, path: String, props: PlatformMap<String, String?>)
 }
 
 private fun propsOf(
@@ -85,4 +85,8 @@ private fun propsOf(
         "mandatory" to mandatory,
         "optional" to optional
     )
+}
+
+private fun PlatformMap<String, String?>.areValidForEvent(mandatoryPropsForEvent: PlatformList<String>): Boolean {
+    return mandatoryPropsForEvent.all { key -> this[key] != null }
 }
