@@ -1,6 +1,7 @@
 package ai.mealz.analytics
 
 import ai.mealz.analytics.handler.LogHandler
+import ai.mealz.analytics.utils.PlatformMap
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.request.post
@@ -31,52 +32,13 @@ actual object SharedAnalytics : AbstractSharedAnalytics() {
         install(DefaultRequest)
     }
 
-    private fun plausiblePropsToDict(props: PlausibleProps): NSDictionary {
-        return mapOf(
-            "recipe_id" to props.recipe_id,
-            "category_id" to props.category_id,
-            "entry_name" to props.entry_name,
-            "item_id" to props.item_id,
-            "ext_item_id" to props.ext_item_id,
-            "item_ean" to props.item_ean,
-            "old_item_id" to props.old_item_id,
-            "old_item_ext_id" to props.old_item_ext_id,
-            "old_item_ean" to props.old_item_ean,
-            "new_item_id" to props.new_item_id,
-            "new_item_ext_id" to props.new_item_ext_id,
-            "new_item_ean" to props.new_item_ean,
-            "product_quantity" to props.product_quantity,
-            "basket_id" to props.basket_id,
-            "miam_amount" to props.miam_amount,
-            "total_amount" to props.total_amount,
-            "miam_products" to props.miam_products,
-            "total_products" to props.total_products,
-            "client_order_id" to props.client_order_id,
-            "supplier_id" to props.supplier_id,
-            "supplier_name" to props.supplier_name,
-            "pos_id" to props.pos_id,
-            "pos_name" to props.pos_name,
-            "search_term" to props.search_term,
-            "stores_found_count" to props.stores_found_count,
-            "budget" to props.budget,
-            "budget_user" to props.budget_user,
-            "budget_planner" to props.budget_planner,
-            "recipe_count" to props.recipe_count,
-            "guests" to props.guests,
-            "uses_count" to props.uses_count,
-            "time_passed" to props.time_passed,
-            "steps_completed" to props.steps_completed,
-            "client_sdk_version" to props.client_sdk_version,
-            "analytics_sdk_version" to props.analytics_sdk_version,
-            "platform" to props.platform,
-            "affiliate" to props.affiliate,
-            "abTestKey" to props.abTestKey
-        ) as NSDictionary
+    private fun plausiblePropsToDict(props: Map<String, String?>): NSDictionary {
+        return props as NSDictionary
     }
 
     @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
     private fun plausibleEventToJson(event: PlausibleEvent): NSString? {
-        val propsDict = plausiblePropsToDict(event.props)
+        val propsDict = plausiblePropsToDict(event.getProps())
 
         val eventDict = mapOf(
             "name" to event.name,
@@ -85,9 +47,9 @@ actual object SharedAnalytics : AbstractSharedAnalytics() {
             "props" to propsDict
         ) as NSDictionary
 
-        val jsonData: NSData = NSJSONSerialization.dataWithJSONObject(eventDict, 0u, null)!!
+        val jsonData: NSData? = NSJSONSerialization.dataWithJSONObject(eventDict, 0u, null)
 
-        return NSString.create(data = jsonData, encoding = NSUTF8StringEncoding)
+        return jsonData?.let { NSString.create(data = it, encoding = NSUTF8StringEncoding) }
     }
 
     override fun sendRequest(event: PlausibleEvent) {
@@ -100,8 +62,8 @@ actual object SharedAnalytics : AbstractSharedAnalytics() {
         }
     }
 
-    actual fun sendPlausibleRequest(plausiblePath: String, path: String, plausibleProps: PlausibleProps) {
-        this.buildAndSendPlausibleRequest(plausiblePath, path, plausibleProps)
+    actual fun sendPlausibleRequest(plausiblePath: String, path: String, journey: String, plausibleProps: PlatformMap<String, String?>) {
+        this.buildAndSendPlausibleRequest(plausiblePath, path, journey, plausibleProps)
     }
 
     actual fun initSharedAnalytics(domain: String, version: String, onEmit: onEmitFunction) {

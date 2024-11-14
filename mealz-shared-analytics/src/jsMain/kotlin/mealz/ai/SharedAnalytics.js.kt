@@ -1,5 +1,6 @@
 package ai.mealz.analytics
 
+import ai.mealz.analytics.utils.PlatformMap
 import kotlinx.browser.window
 import org.w3c.fetch.RequestInit
 
@@ -15,8 +16,8 @@ actual object SharedAnalytics : AbstractSharedAnalytics() {
         )
     }
 
-    actual fun sendPlausibleRequest(plausiblePath: String, path: String, plausibleProps: PlausibleProps) {
-        this.buildAndSendPlausibleRequest(plausiblePath, path, plausibleProps)
+    actual fun sendPlausibleRequest(plausiblePath: String, path: String, journey: String, plausibleProps: PlatformMap<String, String?>) {
+        this.buildAndSendPlausibleRequest(plausiblePath, path, journey, plausibleProps)
     }
 
     actual fun initSharedAnalytics(domain: String, version: String, onEmit: onEmitFunction) {

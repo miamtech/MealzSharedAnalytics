@@ -1,5 +1,10 @@
 package ai.mealz.analytics
 
+import ai.mealz.analytics.handler.LogHandler
+import ai.mealz.analytics.utils.PlatformList
+import ai.mealz.analytics.utils.PlatformMap
+import ai.mealz.analytics.utils.splitToPlatformList
+
 typealias onEmitFunction = (PlausibleEvent) -> Unit
 
 abstract class AbstractSharedAnalytics {
@@ -30,41 +35,40 @@ abstract class AbstractSharedAnalytics {
         // an empty path (mobile) so we assume it is valid
         if (!path.contains("/miam/")) return
 
-        val validParts = "||miam|recipes|liked|categories|my-meals|detail|replace-item|sponsor|meals-planner|catalog|results|basket-preview|finalize|onboarding|locator|"
-        var pathWithoutURL = path.substringAfter("/miam/")
-        // Not using a list is the lightest way to do it when compiled in JS
-        while (pathWithoutURL.isNotEmpty()) {
-            // Find the index of the next '/' to separate path segments
-            val nextSlashIndex = pathWithoutURL.indexOf('/').takeIf { it!=-1 } ?: pathWithoutURL.length
-            val part = pathWithoutURL.substring(0, nextSlashIndex)
-            // If the part is not in the valid set of path segments nor a number, throw an exception
-            if (!validParts.contains("|$part|") && part.toIntOrNull() == null) {
+        // Only keep Mealz's part
+        val pathSplit = path.substringAfter("/miam/").splitToPlatformList('/')
+
+        pathSplit.forEach { part ->
+            if (!VALID_PATH_PARTS.contains(part) && part.toIntOrNull() == null) {
+                // If the part is not in the valid set of path segments nor a number, throw an exception
                 throw IllegalArgumentException("Invalid path : \"$path\". \"$part\" is not a valid path part.")
             }
-
-            // Remove the processed part and move to the next segment if there's more path left
-            pathWithoutURL = if (nextSlashIndex < pathWithoutURL.length) {
-                pathWithoutURL.substring(nextSlashIndex + 1)
-            } else "" // Path completely parsed
         }
     }
 
-    internal fun buildAndSendPlausibleRequest(eventType: String, path: String, props: PlausibleProps) {
-        if (!alreadyInitialized) return
+    private fun validateJourney(journey: String) {
+        if (!VALID_JOURNEYS.contains(journey)) {
+            throw IllegalArgumentException("Invalid journey : \"$journey\". Valid values are $VALID_JOURNEYS")
+        }
+    }
+
+    internal fun buildAndSendPlausibleRequest(eventType: String, path: String, journey: String, props: PlatformMap<String, String?>) {
+        if (!alreadyInitialized) return LogHandler.warn("Tried to send event before analytics initialization")
 
         validatePath(path)
-        val fullProps = props.copy(
-            client_sdk_version = clientSDKVersion,
-            analytics_sdk_version = analyticsSDKVersion,
-            platform = getPlatform().name,
-            abTestKey = abTestKey,
-            affiliate = affiliate
-        )
+        validateJourney(journey)
+
+        props["client_sdk_version"] = clientSDKVersion
+        props["analytics_sdk_version"] = analyticsSDKVersion
+        props["platform"] = getPlatform().name
+        props["abTestKey"] = abTestKey
+        props["affiliate"] = affiliate
+        props["journey"] = journey
         val event = PlausibleEvent(
             eventType,
             path,
             domain,
-            fullProps
+            props.value
         )
         onEmit(event)
         sendRequest(event)
@@ -72,5 +76,28 @@ abstract class AbstractSharedAnalytics {
 
     companion object {
         internal const val PLAUSIBLE_URL: String = "https://plausible.io/api/event"
+        private val VALID_PATH_PARTS = PlatformList(
+            "",
+            "basket",
+            "basket-preview",
+            "catalog",
+            "categories",
+            "cooking",
+            "finalize",
+            "item-selector",
+            "liked",
+            "locator",
+            "meals-planner",
+            "onboarding",
+            "ordered",
+            "orders",
+            "preferences",
+            "products",
+            "recipes",
+            "results",
+            "shopping",
+            "sponsor"
+        )
+        val VALID_JOURNEYS = PlatformList("mealz-space", "shelves", "search", "")
     }
 }
