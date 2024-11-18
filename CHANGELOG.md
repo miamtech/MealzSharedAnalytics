@@ -1,5 +1,6 @@
 ## 3.0.1
 [BRK][FIX] Fix `entry.replace` event had the wrong props
+[BRK][FIX] Fix `item-selector.back` and `item-selector.close` event had the wrong props
 
 ## 3.0.0
 [BRK][FEA] Replaced PlausibleProps by `MutableMap<String, String?>` in mobile and `{ [key: string]: string }` in js

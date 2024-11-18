@@ -97,8 +97,8 @@ object EventService : EventSender {
         PlausibleDestinations.ENTRY_IGNORE.plausiblePath to propsOf(PlatformList("entry_name", "item_id", "ext_item_id", "item_ean", "product_quantity"), PlatformList("recipe_id")),
 
         // ------------------------------- ITEM SELECTOR -------------------------------------------
-        PlausibleDestinations.ITEM_SELECTOR_BACK.plausiblePath to propsOf(PlatformList("recipe_id", "entry_count"), PlatformList()),
-        PlausibleDestinations.ITEM_SELECTOR_CLOSE.plausiblePath to propsOf(PlatformList("recipe_id", "entry_count"), PlatformList()),
+        PlausibleDestinations.ITEM_SELECTOR_BACK.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList()),
+        PlausibleDestinations.ITEM_SELECTOR_CLOSE.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList()),
         PlausibleDestinations.ITEM_SELECTOR_SEARCH.plausiblePath to propsOf(PlatformList("search_term"), PlatformList("old_item_id", "old_item_ext_id", "old_item_ean", "recipe_id")),
 
         // ---------------------------------- PAYMENT ----------------------------------------------
