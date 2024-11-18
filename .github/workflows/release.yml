@@ -30,16 +30,16 @@ jobs:
             exit 1
           fi
 
-      - name: Build dist folder
-        run: |
-          echo Using version: ${{ steps.extract_version.outputs.version }}
-          make js VERSION=${{ steps.extract_version.outputs.version }}
-
       - name: Test with Gradle
         run: ./gradlew test -Pprod=true
 
       - name: Replace version number
         run: make replace_version_number VERSION=${{ steps.extract_version.outputs.version }}
+
+      - name: Build dist folder
+        run: |
+          echo Using version: ${{ steps.extract_version.outputs.version }}
+          make js VERSION=${{ steps.extract_version.outputs.version }}
 
       - name: npm release
         env:
