@@ -29,22 +29,16 @@ kotlin {
 
     withSourcesJar(false)
 
-    // TODO: try to build with wasmJs
     js(IR) {
         useEsModules()
         generateTypeScriptDefinitions()
         browser {
             webpackTask {
-                mainOutputFileName = "main.js"
+                mainOutputFileName.set("main.js")
                 sourceMaps = false
             }
             commonWebpackConfig {
                 sourceMaps = false
-            }
-        }
-        binaries.withType<JsIrBinary>().all {
-            this.linkTask.configure {
-                kotlinOptions { sourceMap = false }
             }
         }
         binaries.executable()
@@ -110,10 +104,10 @@ kotlin {
 
 android {
     namespace = "ai.mealz.analytics"
-    compileSdk = 34
+    compileSdk = 33
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 24
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
