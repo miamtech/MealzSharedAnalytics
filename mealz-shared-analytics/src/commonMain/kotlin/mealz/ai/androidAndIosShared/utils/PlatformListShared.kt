@@ -12,11 +12,11 @@ open class PlatformListShared<T>(vararg elements: T) : IPlatformList<T>, Abstrac
         return array[index]
     }
 
-    override fun forEach(predicate: (element: T) -> Unit) {
+    override fun forEach(predicate: (T) -> Unit) {
         array.forEach(predicate)
     }
 
-    override fun all(predicate: (element: T) -> Boolean): Boolean {
+    override fun all(predicate: (T) -> Boolean): Boolean {
         return array.all(predicate)
     }
 

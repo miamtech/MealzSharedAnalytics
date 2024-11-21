@@ -6,8 +6,8 @@ expect class PlatformList<T>(vararg elements: T): IPlatformList<T> {
     override fun contains(element: T): Boolean
     override fun push(element: T)
     override fun isEmpty(): Boolean
-    override fun forEach(predicate: (element: T) -> Unit)
-    override fun all(predicate: (element: T) -> Boolean): Boolean
+    override fun forEach(predicate: (T) -> Unit)
+    override fun all(predicate: (T) -> Boolean): Boolean
 }
 
 interface IPlatformList<T> {
@@ -16,8 +16,8 @@ interface IPlatformList<T> {
     fun contains(element: T): Boolean
     fun push(element: T)
     fun isEmpty(): Boolean
-    fun forEach(predicate: (element: T) -> Unit)
-    fun all(predicate: (element: T) -> Boolean): Boolean
+    fun forEach(predicate: (T) -> Unit)
+    fun all(predicate: (T) -> Boolean): Boolean
 }
 
 fun String.splitToPlatformList(delimiter: Char): PlatformList<String> {
