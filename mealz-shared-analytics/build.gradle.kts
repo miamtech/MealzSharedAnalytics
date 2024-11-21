@@ -35,7 +35,7 @@ kotlin {
         generateTypeScriptDefinitions()
         browser {
             webpackTask {
-                mainOutputFileName = "main.js"
+                mainOutputFileName.set("main.js")
                 sourceMaps = false
             }
             commonWebpackConfig {
