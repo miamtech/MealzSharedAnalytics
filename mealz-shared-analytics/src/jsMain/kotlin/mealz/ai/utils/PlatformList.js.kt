@@ -14,14 +14,14 @@ actual class PlatformList<T> actual constructor(vararg elements: T) : IPlatformL
     actual override operator fun get(index: Int): T = array[index] as T
 
     actual override fun isEmpty(): Boolean {
-        return array.length === 0
+        return array.length == 0
     }
 
-    actual override fun forEach(predicate: (element: T) -> Unit) {
+    actual override fun forEach(predicate: (T) -> Unit) {
         array.forEach(predicate)
     }
 
-    actual override fun all(predicate: (element: T) -> Boolean): Boolean {
+    actual override fun all(predicate: (T) -> Boolean): Boolean {
         return array.every(predicate) as Boolean
     }
 
