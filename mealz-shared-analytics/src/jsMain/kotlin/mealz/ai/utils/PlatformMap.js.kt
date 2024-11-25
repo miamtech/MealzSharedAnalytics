@@ -41,7 +41,7 @@ actual class PlatformMap<K, V> actual constructor(vararg elements: Pair<K, V>) :
         return JSON.stringify(map)
     }
 
-    actual override fun forEach(predicate: (key: K, value: V) -> Unit) {
+    actual override fun forEach(predicate: (K, V) -> Unit) {
         Object.entries(map).forEach { entry: dynamic -> predicate(entry[0] as K, entry[1] as V)}
     }
 

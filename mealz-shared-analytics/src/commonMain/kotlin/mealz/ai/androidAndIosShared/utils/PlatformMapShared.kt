@@ -32,7 +32,7 @@ open class PlatformMapShared<K, V>(vararg elements: Pair<K, V>) : IPlatformMap<K
         }
     }
 
-    override fun forEach(predicate: (key: K, value: V) -> Unit) {
+    override fun forEach(predicate: (K, V) -> Unit) {
         map.forEach {
             predicate(it.key, it.value)
         }
