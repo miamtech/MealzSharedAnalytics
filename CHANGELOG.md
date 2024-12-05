@@ -1,4 +1,8 @@
-## 3.0.1
+## 4.1.0
+[FEA] Added "status" to `entry.replace` optional props
+[FEA] Added "guests" to `recipe.change-guests` optional props
+
+## 4.0.0
 [BRK][FIX] Fix `entry.replace` event had the wrong props
 [BRK][FIX] Fix `item-selector.back` and `item-selector.close` event had the wrong props
 
