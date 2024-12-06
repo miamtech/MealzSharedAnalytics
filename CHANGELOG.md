@@ -1,6 +1,7 @@
 ## 4.1.0
 [FEA] Added "status" to `entry.replace` optional props
 [FEA] Added "guests" to `recipe.change-guests` optional props
+[FEA] Added "list-scan" to valid path parts
 
 ## 4.0.0
 [BRK][FIX] Fix `entry.replace` event had the wrong props
