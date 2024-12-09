@@ -86,6 +86,7 @@ abstract class AbstractSharedAnalytics {
             "finalize",
             "item-selector",
             "liked",
+            "list-scan",
             "locator",
             "meals-planner",
             "onboarding",
