@@ -1,3 +1,6 @@
+## 4.1.1
+[FIX] `entry.replace` props "item_id", "ext_item_id" and "item_ean" are now optional
+
 ## 4.1.0
 [FEA] Added "status" to `entry.replace` optional props
 [FEA] Added "guests" to `recipe.change-guests` optional props
