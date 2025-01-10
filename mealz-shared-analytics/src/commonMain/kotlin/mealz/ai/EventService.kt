@@ -26,6 +26,7 @@ object EventService : EventSender {
 
         // ---------------------------------- SEARCH ----------------------------------------------
         PlausibleDestinations.SEARCH.plausiblePath to propsOf(PlatformList("search_term"), PlatformList()),
+        PlausibleDestinations.SEARCH_RESULTS.plausiblePath to propsOf(PlatformList("search_term", "number_of_results"), PlatformList()),
 
         // ---------------------------------- RECIPE ----------------------------------------------
         PlausibleDestinations.RECIPE_SHOW.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList("category_id")),
@@ -107,6 +108,7 @@ object EventService : EventSender {
 
         // ---------------------------------- BASKET ----------------------------------------------
         PlausibleDestinations.BASKET_DISPLAY.plausiblePath to propsOf(PlatformList(), PlatformList()),
+        PlausibleDestinations.BASKET_SHOW.plausiblePath to propsOf(PlatformList("number_of_recipes"), PlatformList()),
         PlausibleDestinations.BASKET_RECIPES_DISPLAY.plausiblePath to propsOf(PlatformList(), PlatformList()),
         PlausibleDestinations.BASKET_PRODUCTS_DISPLAY.plausiblePath to propsOf(PlatformList(), PlatformList()),
         PlausibleDestinations.BASKET_CLOSE.plausiblePath to propsOf(PlatformList(), PlatformList()),

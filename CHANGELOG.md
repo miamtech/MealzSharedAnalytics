@@ -1,3 +1,8 @@
+## 4.2.0
+[FEA] Added `basket.show` event
+[FEA] Added `search.results` event
+[FEA] Added "filter" & "search" to `path`
+
 ## 4.1.1
 [FIX] `entry.replace` props "item_id", "ext_item_id" and "item_ean" are now optional
 
