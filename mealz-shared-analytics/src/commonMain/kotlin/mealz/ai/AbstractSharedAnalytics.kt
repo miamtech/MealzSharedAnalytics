@@ -83,6 +83,7 @@ abstract class AbstractSharedAnalytics {
             "catalog",
             "categories",
             "cooking",
+            "filter",
             "finalize",
             "item-selector",
             "liked",
@@ -97,7 +98,8 @@ abstract class AbstractSharedAnalytics {
             "recipes",
             "results",
             "shopping",
-            "sponsor"
+            "sponsor",
+            "search"
         )
         val VALID_JOURNEYS = PlatformList("mealz-space", "shelves", "search", "")
     }
