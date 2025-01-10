@@ -6,6 +6,7 @@ internal enum class PlausibleDestinations(val plausiblePath: String) {
 
     // ---------------------------------- SEARCH ----------------------------------------------
     SEARCH("search"),
+    SEARCH_RESULTS("search.results"),
 
     // ---------------------------------- RECIPE ----------------------------------------------
     RECIPE_SHOW("recipe.show"),
@@ -87,6 +88,7 @@ internal enum class PlausibleDestinations(val plausiblePath: String) {
 
     // ---------------------------------- BASKET -----------------------------------------------
     BASKET_DISPLAY("basket.display"),
+    BASKET_SHOW("basket.show"),
     BASKET_RECIPES_DISPLAY("basket.recipes.display"),
     BASKET_PRODUCTS_DISPLAY("basket.products.display"),
     BASKET_CLOSE("basket.close"),
