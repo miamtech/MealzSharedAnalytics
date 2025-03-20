@@ -1,3 +1,7 @@
+## 4.3.0
+[FEA] Events now send to plausbile and mealz-analytics
+[FIX] Fix a problem where coroutines would stop if a request crashed in Android and iOS, meaning no other request could be sent.
+
 ## 4.2.0
 [FEA] Added `basket.show` event
 [FEA] Added `search.results` event
