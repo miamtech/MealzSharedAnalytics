@@ -1,3 +1,6 @@
+## 4.2.1
+[FIX] Add ProGuard rule to keep object directly used for analytics
+
 ## 4.2.0
 [FEA] Added `basket.show` event
 [FEA] Added `search.results` event
