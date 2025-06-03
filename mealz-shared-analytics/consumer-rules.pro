@@ -4,6 +4,6 @@
 }
 
 # Don't minify Platform enum
--keep public class ai.mealz.analytics.Platform {
+-keep class ai.mealz.analytics.Platform {
     *;
 }
