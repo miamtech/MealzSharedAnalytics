@@ -98,7 +98,15 @@ internal enum class PlausibleDestinations(val plausiblePath: String) {
 
     // ------------------------------- MEAL PLANNER --------------------------------------------
     PLANNER_STARTED("planner.started"),
+    PLANNER_RESET("planner.reset"),
+    PLANNER_RECIPE_ADDED("planner.recipe.add"),
     PLANNER_RECIPE_DELETED("planner.recipe.delete"),
+    PLANNER_RECIPE_SWAPPED("planner.recipe.swap"),
+    PLANNER_RECIPE_CATALOG_PROMPT("planner.recipe.catalog-prompt"),
+    PLANNER_SUGGESTION_SHOW("planner.suggestion.show"),
+    PLANNER_ITEM_DELETED("planner.item.delete"),
+    PLANNER_ITEM_ADDED("planner.item.add"),
+    PLANNER_ITEM_REPLACED("planner.item.replace"),
     PLANNER_CONFIRM("planner.confirm"),
     PLANNER_FINALIZE("planner.finalize"),
 
