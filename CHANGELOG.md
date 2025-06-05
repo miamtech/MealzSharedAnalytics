@@ -10,6 +10,7 @@
 [FEA] Added `dashboard`, `current`, `history` to `VALID_PATH_PARTS`
 [FEA] Updated `PLANNER_STARTED` parameters
 [FEA] Updated `PLANNER_FINALIZE` parameters
+[FIX] Add ProGuard rule to keep object directly used for analytics
 
 ## 4.2.0
 [FEA] Added `basket.show` event
