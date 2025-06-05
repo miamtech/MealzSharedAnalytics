@@ -117,10 +117,19 @@ object EventService : EventSender {
         PlausibleDestinations.BASKET_TRANSFER.plausiblePath to propsOf(PlatformList("basket_id", "miam_amount", "pos_id", "pos_name", "supplier_id"), PlatformList()),
 
         // ------------------------------- MEAL PLANNER --------------------------------------------
-        PlausibleDestinations.PLANNER_STARTED.plausiblePath to propsOf(PlatformList("budget", "guests", "recipe_count"), PlatformList()),
+        PlausibleDestinations.PLANNER_STARTED.plausiblePath to propsOf(PlatformList("guests"), PlatformList("budget", "recipe_count", "mode")),
+        PlausibleDestinations.PLANNER_RESET.plausiblePath to propsOf(PlatformList(), PlatformList()),
         PlausibleDestinations.PLANNER_RECIPE_DELETED.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList()),
+        PlausibleDestinations.PLANNER_RECIPE_ADDED.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList()),
+        PlausibleDestinations.PLANNER_RECIPE_SWAPPED.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList()),
+        PlausibleDestinations.PLANNER_RECIPE_CATALOG_PROMPT.plausiblePath to propsOf(PlatformList(), PlatformList()),
+        PlausibleDestinations.PLANNER_SUGGESTION_SHOW.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList()),
+        PlausibleDestinations.PLANNER_ITEM_DELETED.plausiblePath to propsOf(PlatformList("recipe_id", "item_id"), PlatformList()),
+        PlausibleDestinations.PLANNER_ITEM_ADDED.plausiblePath to propsOf(PlatformList("recipe_id", "item_id"), PlatformList()),
+        PlausibleDestinations.PLANNER_ITEM_REPLACED.plausiblePath to propsOf(PlatformList("recipe_id", "item_id"), PlatformList()),
+        // budget_planner is the budget defined when creating the planner, budget_user is the budget when the planner is finished
         PlausibleDestinations.PLANNER_CONFIRM.plausiblePath to propsOf(PlatformList("budget_user", "budget_planner", "recipe_count", "guests", "uses_count", "time_passed"), PlatformList()),
-        PlausibleDestinations.PLANNER_FINALIZE.plausiblePath to propsOf(PlatformList("budget_user", "budget_planner", "recipe_count", "guests"), PlatformList()),
+        PlausibleDestinations.PLANNER_FINALIZE.plausiblePath to propsOf(PlatformList("budget_user", "recipe_count", "guests"), PlatformList("budget_planner")),
 
         // ------------------------------- STORE LOCATOR -------------------------------------------
         PlausibleDestinations.LOCATOR_DISPLAY.plausiblePath to propsOf(PlatformList(), PlatformList()),
