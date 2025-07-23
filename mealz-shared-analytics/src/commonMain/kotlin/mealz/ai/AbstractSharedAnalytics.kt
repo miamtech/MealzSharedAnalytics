@@ -102,6 +102,7 @@ abstract class AbstractSharedAnalytics {
             "shopping",
             "sponsor",
             "search",
+            "supplier-selector",
             "history"
         )
         val VALID_JOURNEYS = PlatformList("mealz-space", "shelves", "search", "")
