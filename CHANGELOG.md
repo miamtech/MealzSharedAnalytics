@@ -1,3 +1,10 @@
+## 4.4.0
+[FEA] Added `supplier-selector.display` event
+[FEA] Added `supplier-selector.back` event  
+[FEA] Added `supplier-selector.close` event
+[FEA] Added `supplier-selector.select` event
+[FEA] Added "supplier-selector" to `VALID_PATH_PARTS`
+
 ## 4.3.1
 [FEA] Added `planner.item.replaced` event
 
