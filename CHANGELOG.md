@@ -5,6 +5,9 @@
 [FEA] Added `supplier-selector.select` event
 [FEA] Added "supplier-selector" to `VALID_PATH_PARTS`
 
+## 4.3.1
+[FEA] Added `planner.item.replaced` event
+
 ## 4.3.0
 [FEA] Added `planner.reset` event
 [FEA] Added `planner.recipe.add` event

@@ -106,7 +106,8 @@ internal enum class PlausibleDestinations(val plausiblePath: String) {
     PLANNER_SUGGESTION_SHOW("planner.suggestion.show"),
     PLANNER_ITEM_DELETED("planner.item.delete"),
     PLANNER_ITEM_ADDED("planner.item.add"),
-    PLANNER_ITEM_REPLACED("planner.item.replace"),
+    PLANNER_ITEM_REPLACE("planner.item.replace"),
+    PLANNER_ITEM_REPLACED("planner.item.replaced"),
     PLANNER_CONFIRM("planner.confirm"),
     PLANNER_FINALIZE("planner.finalize"),
 
