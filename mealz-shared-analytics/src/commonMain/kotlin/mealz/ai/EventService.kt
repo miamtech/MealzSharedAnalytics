@@ -116,6 +116,12 @@ object EventService : EventSender {
         PlausibleDestinations.BASKET_CONFIRMED.plausiblePath to propsOf(PlatformList("basket_id", "miam_amount", "total_amount", "pos_id", "pos_name", "recipe_count", "miam_products"), PlatformList("total_products", "client_order_id")),
         PlausibleDestinations.BASKET_TRANSFER.plausiblePath to propsOf(PlatformList("basket_id", "miam_amount", "pos_id", "pos_name", "supplier_id"), PlatformList()),
 
+        // ------------------------------- SUPPLIER SELECTOR -------------------------------------------
+        PlausibleDestinations.SUPPLIER_SELECTOR_DISPLAY.plausiblePath to propsOf(PlatformList(), PlatformList()),
+        PlausibleDestinations.SUPPLIER_SELECTOR_BACK.plausiblePath to propsOf(PlatformList(), PlatformList()),
+        PlausibleDestinations.SUPPLIER_SELECTOR_CLOSE.plausiblePath to propsOf(PlatformList(), PlatformList()),
+        PlausibleDestinations.SUPPLIER_SELECTOR_SELECT.plausiblePath to propsOf(PlatformList("supplier_id"), PlatformList()),
+       
         // ------------------------------- MEAL PLANNER --------------------------------------------
         PlausibleDestinations.PLANNER_STARTED.plausiblePath to propsOf(PlatformList("guests"), PlatformList("budget", "recipe_count", "mode")),
         PlausibleDestinations.PLANNER_RESET.plausiblePath to propsOf(PlatformList(), PlatformList()),

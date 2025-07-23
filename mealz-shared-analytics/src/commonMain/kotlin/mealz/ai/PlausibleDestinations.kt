@@ -110,6 +110,12 @@ internal enum class PlausibleDestinations(val plausiblePath: String) {
     PLANNER_CONFIRM("planner.confirm"),
     PLANNER_FINALIZE("planner.finalize"),
 
+    // ------------------------------- SUPPLIER SELECTOR -------------------------------------------
+    SUPPLIER_SELECTOR_DISPLAY("supplier-selector.display"),
+    SUPPLIER_SELECTOR_BACK("supplier-selector.back"),
+    SUPPLIER_SELECTOR_CLOSE("supplier-selector.close"),
+    SUPPLIER_SELECTOR_SELECT("supplier-selector.select"),
+
     // ------------------------------- STORE LOCATOR -------------------------------------------
     LOCATOR_DISPLAY("locator.display"),
     LOCATOR_MAP_DISPLAY("locator.map.display"),
