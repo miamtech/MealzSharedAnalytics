@@ -1,3 +1,30 @@
+## 4.4.1
+[FIX] Force release
+
+## 4.4.0
+[FEA] Added `supplier-selector.display` event
+[FEA] Added `supplier-selector.back` event  
+[FEA] Added `supplier-selector.close` event
+[FEA] Added `supplier-selector.select` event
+[FEA] Added "supplier-selector" to `VALID_PATH_PARTS`
+
+## 4.3.1
+[FEA] Added `planner.item.replaced` event
+
+## 4.3.0
+[FEA] Added `planner.reset` event
+[FEA] Added `planner.recipe.add` event
+[FEA] Added `planner.recipe.swap` event
+[FEA] Added `planner.recipe.catalog-prompt` event
+[FEA] Added `planner.suggestion.show` event
+[FEA] Added `planner.item.delete` event
+[FEA] Added `planner.item.add` event
+[FEA] Added `planner.item.replace` event
+[FEA] Added `dashboard`, `current`, `history` to `VALID_PATH_PARTS`
+[FEA] Updated `PLANNER_STARTED` parameters
+[FEA] Updated `PLANNER_FINALIZE` parameters
+[FIX] Add ProGuard rule to keep object directly used for analytics
+
 ## 4.2.0
 [FEA] Added `basket.show` event
 [FEA] Added `search.results` event
