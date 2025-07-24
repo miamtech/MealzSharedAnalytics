@@ -90,6 +90,8 @@ abstract class AbstractSharedAnalytics {
             "list-scan",
             "locator",
             "meals-planner",
+            "dashboard",
+            "current",
             "onboarding",
             "ordered",
             "orders",
@@ -99,7 +101,9 @@ abstract class AbstractSharedAnalytics {
             "results",
             "shopping",
             "sponsor",
-            "search"
+            "search",
+            "supplier-selector",
+            "history"
         )
         val VALID_JOURNEYS = PlatformList("mealz-space", "shelves", "search", "")
     }

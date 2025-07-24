@@ -116,11 +116,27 @@ object EventService : EventSender {
         PlausibleDestinations.BASKET_CONFIRMED.plausiblePath to propsOf(PlatformList("basket_id", "miam_amount", "total_amount", "pos_id", "pos_name", "recipe_count", "miam_products"), PlatformList("total_products", "client_order_id")),
         PlausibleDestinations.BASKET_TRANSFER.plausiblePath to propsOf(PlatformList("basket_id", "miam_amount", "pos_id", "pos_name", "supplier_id"), PlatformList()),
 
+        // ------------------------------- SUPPLIER SELECTOR -------------------------------------------
+        PlausibleDestinations.SUPPLIER_SELECTOR_DISPLAY.plausiblePath to propsOf(PlatformList(), PlatformList()),
+        PlausibleDestinations.SUPPLIER_SELECTOR_BACK.plausiblePath to propsOf(PlatformList(), PlatformList()),
+        PlausibleDestinations.SUPPLIER_SELECTOR_CLOSE.plausiblePath to propsOf(PlatformList(), PlatformList()),
+        PlausibleDestinations.SUPPLIER_SELECTOR_SELECT.plausiblePath to propsOf(PlatformList("supplier_id"), PlatformList()),
+       
         // ------------------------------- MEAL PLANNER --------------------------------------------
-        PlausibleDestinations.PLANNER_STARTED.plausiblePath to propsOf(PlatformList("budget", "guests", "recipe_count"), PlatformList()),
+        PlausibleDestinations.PLANNER_STARTED.plausiblePath to propsOf(PlatformList("guests"), PlatformList("budget", "recipe_count", "mode")),
+        PlausibleDestinations.PLANNER_RESET.plausiblePath to propsOf(PlatformList(), PlatformList()),
         PlausibleDestinations.PLANNER_RECIPE_DELETED.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList()),
+        PlausibleDestinations.PLANNER_RECIPE_ADDED.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList()),
+        PlausibleDestinations.PLANNER_RECIPE_SWAPPED.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList()),
+        PlausibleDestinations.PLANNER_RECIPE_CATALOG_PROMPT.plausiblePath to propsOf(PlatformList(), PlatformList()),
+        PlausibleDestinations.PLANNER_SUGGESTION_SHOW.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList()),
+        PlausibleDestinations.PLANNER_ITEM_DELETED.plausiblePath to propsOf(PlatformList("recipe_id", "item_id"), PlatformList()),
+        PlausibleDestinations.PLANNER_ITEM_ADDED.plausiblePath to propsOf(PlatformList("recipe_id", "item_id"), PlatformList()),
+        PlausibleDestinations.PLANNER_ITEM_REPLACE.plausiblePath to propsOf(PlatformList("recipe_id", "item_id"), PlatformList()),
+        PlausibleDestinations.PLANNER_ITEM_REPLACED.plausiblePath to propsOf(PlatformList("recipe_id", "new_item_id"), PlatformList("old_item_id")),
+        // budget_planner is the budget defined when creating the planner, budget_user is the budget when the planner is finished
         PlausibleDestinations.PLANNER_CONFIRM.plausiblePath to propsOf(PlatformList("budget_user", "budget_planner", "recipe_count", "guests", "uses_count", "time_passed"), PlatformList()),
-        PlausibleDestinations.PLANNER_FINALIZE.plausiblePath to propsOf(PlatformList("budget_user", "budget_planner", "recipe_count", "guests"), PlatformList()),
+        PlausibleDestinations.PLANNER_FINALIZE.plausiblePath to propsOf(PlatformList("budget_user", "recipe_count", "guests"), PlatformList("budget_planner")),
 
         // ------------------------------- STORE LOCATOR -------------------------------------------
         PlausibleDestinations.LOCATOR_DISPLAY.plausiblePath to propsOf(PlatformList(), PlatformList()),
