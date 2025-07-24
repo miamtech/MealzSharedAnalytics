@@ -1,3 +1,6 @@
+## 4.4.1
+[FIX] Force release
+
 ## 4.4.0
 [FEA] Added `supplier-selector.display` event
 [FEA] Added `supplier-selector.back` event  
