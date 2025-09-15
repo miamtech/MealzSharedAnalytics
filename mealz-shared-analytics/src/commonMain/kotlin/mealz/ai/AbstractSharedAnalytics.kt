@@ -76,6 +76,8 @@ abstract class AbstractSharedAnalytics {
 
     companion object {
         internal const val PLAUSIBLE_URL: String = "https://plausible.io/api/event"
+        // TODO: This is uat ip, replace by right url when DNS is done
+        internal const val MEALZ_ANALYTICS_URL: String = "https://analytics-uat.mealz.ai/publish_event"
         private val VALID_PATH_PARTS = PlatformList(
             "",
             "basket",
