@@ -5,6 +5,7 @@ import ai.mealz.analytics.utils.PlatformMap
 import com.google.gson.Gson
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
+import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
@@ -27,11 +28,21 @@ actual object SharedAnalytics : AbstractSharedAnalytics() {
     }
 
     override fun sendRequest(event: PlausibleEvent) {
-        LogHandler.info("Will send event $event to $PLAUSIBLE_URL")
+        LogHandler.info("Will send event $event to $PLAUSIBLE_URL and $MEALZ_ANALYTICS_URL")
+        val block: HttpRequestBuilder.() -> Unit = {
+            contentType(ContentType.Application.Json)
+            setBody(gson.toJson(event))
+        }
         coroutineScope.launch {
-            httpClient.post(PLAUSIBLE_URL) {
-                contentType(ContentType.Application.Json)
-                setBody(gson.toJson(event))
+            try {
+                httpClient.post(PLAUSIBLE_URL, block)
+            } catch (e: Exception) {
+                LogHandler.error("Failed to send Plausible request: ${e.message}")
+            }
+            try {
+                httpClient.post(MEALZ_ANALYTICS_URL, block)
+            } catch (e: Exception) {
+                LogHandler.error("Failed to send mealz-analytics request: ${e.message}")
             }
         }
     }

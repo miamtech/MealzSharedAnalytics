@@ -2,18 +2,22 @@ package ai.mealz.analytics
 
 import ai.mealz.analytics.utils.PlatformMap
 import kotlinx.browser.window
+import org.w3c.fetch.Headers
 import org.w3c.fetch.RequestInit
 
 actual object SharedAnalytics : AbstractSharedAnalytics() {
 
     override fun sendRequest(event: PlausibleEvent) {
-        window.fetch(
-            PLAUSIBLE_URL,
-            init = RequestInit(
-                method = "POST",
-                body = JSON.stringify(event)
-            )
+        val headers = Headers()
+        headers.set("Content-Type", "application/json")
+        val body = JSON.stringify(event)
+        val init = RequestInit(
+            method = "POST",
+            headers,
+            body
         )
+        window.fetch(PLAUSIBLE_URL, init)
+        window.fetch(MEALZ_ANALYTICS_URL, init)
     }
 
     actual fun sendPlausibleRequest(plausiblePath: String, path: String, journey: String, plausibleProps: PlatformMap<String, String?>) {
