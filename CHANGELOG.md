@@ -5,7 +5,7 @@
 [FEA] Added `planner.onboarding.next` event with `type` and `step` parameters
 [FEA] Added `planner.onboarding.understood` event with `type` parameter
 [FEA] Added `planner.onboarding.close` event with `type` and `step` parameters
-[FEA] Added `planner.help.question-mark` event with `type` parameter
+[FEA] Added `planner.help.question-mark` event with `from` parameter
 [FEA] Added `planner.help.display` event with `step` parameter
 [FEA] Added `planner.help.next` event with `step` parameter
 [FEA] Added `planner.help.previous` event with `step` parameter

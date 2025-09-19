@@ -139,7 +139,7 @@ internal enum class PlausibleDestinations(val plausiblePath: String) {
     PLANNER_ONBOARDING_UNDERSTOOD_CLICK("planner.onboarding.understood"),
     PLANNER_ONBOARDING_CLOSE_CLICK("planner.onboarding.close"),
 
-    // -------------------------------- PLANNER HELP ----------------------------------------
+    // -------------------------------- PLANNER HELP MODAL ----------------------------------------
     PLANNER_HELP_QUESTION_MARK_CLICK("planner.help.question-mark"),
     PLANNER_HELP_DISPLAY("planner.help.display"),
     PLANNER_HELP_NEXT_CLICK("planner.help.next"),
