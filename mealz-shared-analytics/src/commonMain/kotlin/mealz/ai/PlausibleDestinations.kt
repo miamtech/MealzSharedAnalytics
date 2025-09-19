@@ -130,4 +130,20 @@ internal enum class PlausibleDestinations(val plausiblePath: String) {
     // -------------------------------- ONBOARDING ---------------------------------------------
     ONBOARDING_ACTION("onboarding.action"),
     ONBOARDING_CLOSE("onboarding.close"),
+
+    // -------------------------------- PLANNER ONBOARDING ---------------------------
+    PLANNER_ONBOARDING_DISPLAY("planner.onboarding.display"),
+    PLANNER_ONBOARDING_START_CLICK("planner.onboarding.start"),
+    PLANNER_ONBOARDING_SKIP_CLICK("planner.onboarding.skip"),
+    PLANNER_PONBOARDING_NEXT_CLICK("planner.onboarding.next"),
+    PLANNER_ONBOARDING_UNDERSTOOD_CLICK("planner.onboarding.understood"),
+    PLANNER_ONBOARDING_CLOSE_CLICK("planner.onboarding.close"),
+
+    // -------------------------------- PLANNER HELP MODAL ----------------------------------------
+    PLANNER_HELP_QUESTION_MARK_CLICK("planner.help.question-mark"),
+    PLANNER_HELP_DISPLAY("planner.help.display"),
+    PLANNER_HELP_NEXT_CLICK("planner.help.next"),
+    PLANNER_HELP_PREVIOUS_CLICK("planner.help.previous"),
+    PLANNER_HELP_UNDERSTOOD_CLICK("planner.help.understood"),
+    PLANNER_HELP_CLOSE_CLICK("planner.help.close"),
 }
