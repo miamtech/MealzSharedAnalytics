@@ -150,7 +150,24 @@ object EventService : EventSender {
 
         // -------------------------------- ONBOARDING ---------------------------------------------
         PlausibleDestinations.ONBOARDING_ACTION.plausiblePath to propsOf(PlatformList("steps_completed"), PlatformList()),
-        PlausibleDestinations.ONBOARDING_CLOSE.plausiblePath to propsOf(PlatformList("steps_completed"), PlatformList())
+        PlausibleDestinations.ONBOARDING_CLOSE.plausiblePath to propsOf(PlatformList("steps_completed"), PlatformList()),
+
+        // -------------------------------- PLANNER ONBOARDING ---------------------------
+        PlausibleDestinations.PLANNER_ONBOARDING_DISPLAY.plausiblePath to propsOf(PlatformList("type", "step"), PlatformList()),
+        PlausibleDestinations.PLANNER_ONBOARDING_START_CLICK.plausiblePath to propsOf(PlatformList("type"), PlatformList()),
+        PlausibleDestinations.PLANNER_ONBOARDING_SKIP_CLICK.plausiblePath to propsOf(PlatformList("type"), PlatformList()),
+        PlausibleDestinations.PLANNER_PONBOARDING_NEXT_CLICK.plausiblePath to propsOf(PlatformList("type", "step"), PlatformList()),
+        PlausibleDestinations.PLANNER_ONBOARDING_UNDERSTOOD_CLICK.plausiblePath to propsOf(PlatformList("type"), PlatformList()),
+        PlausibleDestinations.PLANNER_ONBOARDING_CLOSE_CLICK.plausiblePath to propsOf(PlatformList("type", "step"), PlatformList()),
+
+        // -------------------------------- PLANNER HELP ----------------------------------------
+        PlausibleDestinations.PLANNER_HELP_QUESTION_MARK_CLICK.plausiblePath to propsOf(PlatformList("from"), PlatformList()),
+        PlausibleDestinations.PLANNER_HELP_DISPLAY.plausiblePath to propsOf(PlatformList("step"), PlatformList()),
+        PlausibleDestinations.PLANNER_HELP_NEXT_CLICK.plausiblePath to propsOf(PlatformList("step"), PlatformList()),
+        PlausibleDestinations.PLANNER_HELP_PREVIOUS_CLICK.plausiblePath to propsOf(PlatformList("step"), PlatformList()),
+        PlausibleDestinations.PLANNER_HELP_UNDERSTOOD_CLICK.plausiblePath to propsOf(PlatformList(), PlatformList()),
+        PlausibleDestinations.PLANNER_HELP_CLOSE_CLICK.plausiblePath to propsOf(PlatformList("step"), PlatformList()),
+
     )
 }
 

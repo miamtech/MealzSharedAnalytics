@@ -1,5 +1,19 @@
+## 4.6.0
+[FEA] Added `planner.onboarding.display` event with `type` and `step` parameters
+[FEA] Added `planner.onboarding.start` event with `type` parameter
+[FEA] Added `planner.onboarding.skip` event with `type` parameter
+[FEA] Added `planner.onboarding.next` event with `type` and `step` parameters
+[FEA] Added `planner.onboarding.understood` event with `type` parameter
+[FEA] Added `planner.onboarding.close` event with `type` and `step` parameters
+[FEA] Added `planner.help.question-mark` event with `type` parameter
+[FEA] Added `planner.help.display` event with `step` parameter
+[FEA] Added `planner.help.next` event with `step` parameter
+[FEA] Added `planner.help.previous` event with `step` parameter
+[FEA] Added `planner.help.understood` event
+[FEA] Added `planner.help.close` event with `step` parameter
+
 ## 4.5.0
-[FEA] Events now send to plausbile and mealz-analytics
+[FEA] Events now send to plausible and mealz-analytics
 [FIX] Fix a problem where coroutines would stop if a request crashed in Android and iOS, meaning no other request could be sent.
 
 ## 4.4.0
