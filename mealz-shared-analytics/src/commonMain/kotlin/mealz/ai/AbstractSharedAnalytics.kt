@@ -12,6 +12,7 @@ abstract class AbstractSharedAnalytics {
     private lateinit var domain: String
     private lateinit var analyticsSDKVersion: String
     private lateinit var clientSDKVersion: String
+    private var environment: String = "prod" // Default to production
 
     internal var abTestKey: String? = null
     internal var affiliate: String? = null
@@ -19,16 +20,29 @@ abstract class AbstractSharedAnalytics {
     private val alreadyInitialized: Boolean
         get() = this::domain.isInitialized && this::clientSDKVersion.isInitialized && domain.isNotBlank() && clientSDKVersion.isNotBlank()
 
-    fun init(domain: String, version: String, onEmit: onEmitFunction) {
+    fun init(domain: String, version: String, onEmit: onEmitFunction, environment: String = "prod") {
         if (alreadyInitialized) return
 
         this.domain = domain
         this.analyticsSDKVersion = "##VERSION##"
         this.clientSDKVersion = version
         this.onEmit = onEmit
+        this.environment = environment
     }
 
     abstract fun sendRequest(event: PlausibleEvent)
+
+    /**
+     * Get the appropriate analytics URL based on the environment
+     * @return The analytics URL for the current environment
+     */
+    internal fun getAnalyticsUrl(): String {
+        return when (environment.lowercase()) {
+            "uat" -> "https://analytics-uat.mealz.ai/publish_event"
+            "prod" -> "https://analytics.mealz.ai/publish_event"
+            else -> "https://analytics.mealz.ai/publish_event" // Default to production
+        }
+    }
 
     private fun validatePath(path: String) {
         // If the path does not contain "/miam/", it may just be the URL of the page (web) or
@@ -76,8 +90,6 @@ abstract class AbstractSharedAnalytics {
 
     companion object {
         internal const val PLAUSIBLE_URL: String = "https://plausible.io/api/event"
-        // TODO: This is uat ip, replace by right url when DNS is done
-        internal const val MEALZ_ANALYTICS_URL: String = "https://analytics-uat.mealz.ai/publish_event"
         private val VALID_PATH_PARTS = PlatformList(
             "",
             "basket",

@@ -1,3 +1,6 @@
+## 4.7.0
+[FEA] Add environment parameter to `initSharedAnalytics` to send events to BigQuery UAT or PROD.
+
 ## 4.6.0
 [FEA] Added `planner.onboarding.display` event with `type` and `step` parameters
 [FEA] Added `planner.onboarding.start` event with `type` parameter

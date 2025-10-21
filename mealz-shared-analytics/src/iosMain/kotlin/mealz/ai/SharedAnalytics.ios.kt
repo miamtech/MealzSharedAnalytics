@@ -54,7 +54,8 @@ actual object SharedAnalytics : AbstractSharedAnalytics() {
     }
 
     override fun sendRequest(event: PlausibleEvent) {
-        LogHandler.info("Will send event $event to $PLAUSIBLE_URL and $MEALZ_ANALYTICS_URL")
+        val analyticsUrl = getAnalyticsUrl()
+        LogHandler.info("Will send event $event to $PLAUSIBLE_URL and $analyticsUrl")
         val block: HttpRequestBuilder.() -> Unit = {
             contentType(ContentType.Application.Json)
             setBody(plausibleEventToJson(event))
@@ -66,7 +67,7 @@ actual object SharedAnalytics : AbstractSharedAnalytics() {
                 LogHandler.error("Failed to send Plausible request: ${e.message}")
             }
             try {
-                httpClient.post(MEALZ_ANALYTICS_URL, block)
+                httpClient.post(analyticsUrl, block)
             } catch (e: Exception) {
                 LogHandler.error("Failed to send mealz-analytics request: ${e.message}")
             }
@@ -77,8 +78,8 @@ actual object SharedAnalytics : AbstractSharedAnalytics() {
         this.buildAndSendPlausibleRequest(plausiblePath, path, journey, plausibleProps)
     }
 
-    actual fun initSharedAnalytics(domain: String, version: String, onEmit: onEmitFunction) {
-        this.init(domain, version, onEmit)
-        LogHandler.info("Analytics init for $domain")
+    actual fun initSharedAnalytics(domain: String, version: String, onEmit: onEmitFunction, environment: String) {
+        this.init(domain, version, onEmit, environment)
+        LogHandler.info("Analytics init for $domain with environment $environment")
     }
 }
