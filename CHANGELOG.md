@@ -1,3 +1,6 @@
+## 4.7.0
+[FEA] Add environment parameter to `initSharedAnalytics` to send events to BigQuery UAT or PROD.
+
 ## 4.6.0
 [FEA] Added `planner.onboarding.display` event with `type` and `step` parameters
 [FEA] Added `planner.onboarding.start` event with `type` parameter
@@ -15,6 +18,9 @@
 ## 4.5.0
 [FEA] Events now send to plausible and mealz-analytics
 [FIX] Fix a problem where coroutines would stop if a request crashed in Android and iOS, meaning no other request could be sent.
+
+## 4.4.1
+[FIX] Force release
 
 ## 4.4.0
 [FEA] Added `supplier-selector.display` event
