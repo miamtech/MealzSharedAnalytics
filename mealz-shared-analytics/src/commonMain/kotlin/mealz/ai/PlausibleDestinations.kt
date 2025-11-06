@@ -110,6 +110,7 @@ internal enum class PlausibleDestinations(val plausiblePath: String) {
     PLANNER_ITEM_REPLACED("planner.item.replaced"),
     PLANNER_CONFIRM("planner.confirm"),
     PLANNER_FINALIZE("planner.finalize"),
+    PLANNER_MODE_SELECT("planner.mode.select"),
 
     // ------------------------------- SUPPLIER SELECTOR -------------------------------------------
     SUPPLIER_SELECTOR_DISPLAY("supplier-selector.display"),
