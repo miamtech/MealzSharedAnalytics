@@ -133,6 +133,7 @@ abstract class AbstractSharedAnalytics {
             "item-replacement",
             "basket",
             "meals-planner-home",
+            "meals-planner-dashboard",
             "meals-planner-catalog",
             "meals-planner-catalog-search",
             "meals-planner-categories",
