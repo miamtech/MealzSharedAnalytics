@@ -1,5 +1,8 @@
+## 4.7.2
+[FEA] Added valid journey `meals-planner-dashboard`
+
 ## 4.7.1
-[UPDATE] Added new valid journey values
+[FEA] Added new valid journey values
 [FEA] Added `planner.mode.select` event with `mode`parameter
 
 ## 4.7.0
