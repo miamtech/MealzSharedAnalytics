@@ -137,6 +137,7 @@ object EventService : EventSender {
         // budget_planner is the budget defined when creating the planner, budget_user is the budget when the planner is finished
         PlausibleDestinations.PLANNER_CONFIRM.plausiblePath to propsOf(PlatformList("budget_user", "budget_planner", "recipe_count", "guests", "uses_count", "time_passed"), PlatformList()),
         PlausibleDestinations.PLANNER_FINALIZE.plausiblePath to propsOf(PlatformList("budget_user", "recipe_count", "guests"), PlatformList("budget_planner")),
+        PlausibleDestinations.PLANNER_MODE_SELECT.plausiblePath to propsOf(PlatformList("mode"), PlatformList()),
 
         // ------------------------------- STORE LOCATOR -------------------------------------------
         PlausibleDestinations.LOCATOR_DISPLAY.plausiblePath to propsOf(PlatformList(), PlatformList()),
