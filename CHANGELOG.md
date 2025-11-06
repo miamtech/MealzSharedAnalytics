@@ -1,3 +1,7 @@
+## 4.7.1
+[UPDATE] Added new valid journey values
+[FEA] Added `planner.mode.select` event with `mode`parameter
+
 ## 4.7.0
 [FEA] Add environment parameter to `initSharedAnalytics` to send events to BigQuery UAT or PROD.
 

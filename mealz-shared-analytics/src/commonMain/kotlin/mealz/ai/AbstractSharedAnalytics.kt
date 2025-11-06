@@ -119,6 +119,26 @@ abstract class AbstractSharedAnalytics {
             "supplier-selector",
             "history"
         )
-        val VALID_JOURNEYS = PlatformList("mealz-space", "shelves", "search", "")
+        val VALID_JOURNEYS = PlatformList(
+            "mealz-space", "shelves", "search", "",
+            "retailer-shelves",
+            "retailer-search",
+            "meals-space-home",
+            "meals-space-catalog",
+            "meals-space-catalog-search",
+            "meals-space-category",
+            "meals-space-recipe-details",
+            "meals-space-all-recipes",
+            "my-meals",
+            "item-replacement",
+            "basket",
+            "meals-planner-home",
+            "meals-planner-catalog",
+            "meals-planner-catalog-search",
+            "meals-planner-categories",
+            "meals-planner-recipe-details",
+            "my-space-favorites",
+            "my-space-history"
+        )
     }
 }
