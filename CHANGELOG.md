@@ -1,3 +1,6 @@
+## 4.7.1
+[UPDATE] Added new valid journey values
+
 ## 4.7.0
 [FEA] Add environment parameter to `initSharedAnalytics` to send events to BigQuery UAT or PROD.
 
