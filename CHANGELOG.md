@@ -1,3 +1,6 @@
+## 4.9.0
+[FEA] Added parameter `recipe_source` for `recipe.add` event
+
 ## 4.8.0
 [FEA] Added parameters for `planner.recipe.add`, `planner.finalize`and `recipe.add` (`mode` and `recipe_source`)
 
