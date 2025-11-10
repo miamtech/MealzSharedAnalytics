@@ -1,3 +1,6 @@
+## 4.8.0
+[FEA] Added parameters for `planner.recipe.add`, `planner.finalize`and `recipe.add` (`mode` and `recipe_source`)
+
 ## 4.7.2
 [FEA] Added valid journey `meals-planner-dashboard`
 
