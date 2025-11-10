@@ -33,7 +33,7 @@ object EventService : EventSender {
         PlausibleDestinations.RECIPE_DISPLAY.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList("category_id")),
         PlausibleDestinations.RECIPE_COOKING_DISPLAY.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList()),
         PlausibleDestinations.RECIPE_SHOPPING_DISPLAY.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList()),
-        PlausibleDestinations.RECIPE_ADD.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList("mode")),
+        PlausibleDestinations.RECIPE_ADD.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList("mode", "recipe_source")),
         PlausibleDestinations.RECIPE_REMOVE.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList()),
         PlausibleDestinations.RECIPE_CHANGE_GUESTS.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList("guests")),
         PlausibleDestinations.RECIPE_LIKE.plausiblePath to propsOf(PlatformList("recipe_id"), PlatformList("category_id")),
