@@ -127,6 +127,7 @@ abstract class AbstractSharedAnalytics {
             "meals-space-catalog",
             "meals-space-catalog-search",
             "meals-space-category",
+            "meals-space-category-search",
             "meals-space-recipe-details",
             "meals-space-all-recipes",
             "my-meals",
