@@ -1,3 +1,8 @@
+## 4.10.0
+[FEA] Added valid journey `meals-space-category-search`
+[FEA] Added paremeter `add_source`, `mode` for `entry.added` event
+[FEA] Added paremeter `total_price`, `total_products` for `entry.add-all` event
+
 ## 4.9.0
 [FEA] Added parameter `recipe_source` for `recipe.add` event
 
