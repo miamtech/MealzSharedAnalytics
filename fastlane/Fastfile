@@ -33,7 +33,7 @@ lane :version_check do |options|
     version = options[:version]
     begin
         sh("
-            REGEX_VERSION='[0-9].[0-9].[0-9]+(-[a-z]*)?$'
+            REGEX_VERSION='[0-9]+\\.[0-9]+\\.[0-9]+(-[a-z]*)?$'
             [[ \"#{version}\" =~ $REGEX_VERSION ]]
         ")
     rescue => ex
