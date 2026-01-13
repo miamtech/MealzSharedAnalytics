@@ -1,4 +1,7 @@
 
+## 4.10.1
+[FEA] Added parameter `guests` from `planner.mode.select`
+
 ## 4.10.0
 [FEA] Added valid journey `meals-space-category-search`
 [FEA] Added parameters `add_source`, `mode` for `entry.added` event
