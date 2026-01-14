@@ -1,5 +1,5 @@
 
-## 4.10.1
+## 4.11.0
 [FEA] Added parameter `guests` from `planner.mode.select`
 
 ## 4.10.0
