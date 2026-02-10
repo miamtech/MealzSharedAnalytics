@@ -1,4 +1,7 @@
 
+## 4.12.0
+[FEA] Added valid journey `meals-space-header`
+
 ## 4.11.0
 [FEA] Added parameter `guests` for `planner.mode.select` event
 
