@@ -124,6 +124,7 @@ abstract class AbstractSharedAnalytics {
             "retailer-shelves",
             "retailer-search",
             "meals-space-home",
+            "meals-space-header",
             "meals-space-catalog",
             "meals-space-catalog-search",
             "meals-space-category",
