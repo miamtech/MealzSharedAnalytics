@@ -1,5 +1,5 @@
 ## 4.13.0
-[FEA] Added optional parameter `catalog_id` from `recipe.add`
+[FEA] Added optional parameter `category_id` from `recipe.add`
 
 ## 4.12.0
 [FEA] Added valid journey `meals-space-header`
