@@ -1,33 +1,23 @@
 package ai.mealz.analytics
 
-import ai.mealz.analytics.handler.LogHandler
 import ai.mealz.analytics.utils.PlatformList
 import ai.mealz.analytics.utils.PlatformMap
 
 object EventService : EventSender {
     override fun sendEvent(name: String, path: String, journey: String, props: PlatformMap<String, String?>) {
-        val propsForEvent = PROPS_FOR_EVENT[name]
-        if (propsForEvent == null) {
-            LogHandler.warn("Unknown event $name")
-            return
-        }
-        val mandatoryProps = propsForEvent["mandatory"]
-        if (mandatoryProps == null) {
-            LogHandler.error("No mandatory props found for $name")
-            return
-        }
-        if (!props.areValidForEvent(mandatoryProps)) {
-            LogHandler.warn(
-                "Invalid props for $name event : mandatory props are $mandatoryProps and optional props are ${propsForEvent["optional"]}"
-            )
-            return
-        }
-        SharedAnalytics.sendPlausibleRequest(
-            name,
-            path,
-            journey,
-            props
-        )
+        PROPS_FOR_EVENT[name]?.let { propsForEvent ->
+            propsForEvent["mandatory"]?.let { mandatoryProps ->
+                if (!props.areValidForEvent(mandatoryProps)) {
+                    error("Invalid props for $name event : mandatory props are $mandatoryProps and optional props are ${propsForEvent["optional"]}")
+                }
+                SharedAnalytics.sendPlausibleRequest(
+                    name,
+                    path,
+                    journey,
+                    props
+                )
+            } ?: error("No mandatory props found for $name")
+        } ?: error("Unknown event $name")
     }
 
     private val PROPS_FOR_EVENT = PlatformMap(

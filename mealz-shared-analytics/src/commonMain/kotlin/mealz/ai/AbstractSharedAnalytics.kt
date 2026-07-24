@@ -69,13 +69,8 @@ abstract class AbstractSharedAnalytics {
     internal fun buildAndSendPlausibleRequest(eventType: String, path: String, journey: String, props: PlatformMap<String, String?>) {
         if (!alreadyInitialized) return LogHandler.warn("Tried to send event before analytics initialization")
 
-        try {
-            validatePath(path)
-            validateJourney(journey)
-        } catch (exception: IllegalArgumentException) {
-            LogHandler.warn(exception.message ?: "Invalid analytics path or journey")
-            return
-        }
+        validatePath(path)
+        validateJourney(journey)
 
         props["client_sdk_version"] = clientSDKVersion
         props["analytics_sdk_version"] = analyticsSDKVersion
