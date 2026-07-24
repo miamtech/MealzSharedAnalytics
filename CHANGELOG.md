@@ -1,6 +1,3 @@
-## 4.13.1
-[FIX] Analytics `sendEvent` / path-journey validation no longer throw; invalid events are logged and skipped so host apps are not interrupted
-
 ## 4.13.0
 [FEA] Added optional parameter `category_id` from `recipe.add`
 
