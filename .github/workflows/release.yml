@@ -4,6 +4,10 @@ on:
   pull_request:
     types: [ closed ]
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   merge-job:
     if: github.event.pull_request.merged == true &&
@@ -12,6 +16,8 @@ jobs:
     runs-on: self-hosted
     env:
       ANDROID_HOME: /Users/miam/Library/Android/sdk
+    outputs:
+      version: ${{ steps.extract_version.outputs.version }}
     steps:
       - uses: actions/checkout@v3
       - name: Extract version from branch name
@@ -41,16 +47,42 @@ jobs:
           echo Using version: ${{ steps.extract_version.outputs.version }}
           make js VERSION=${{ steps.extract_version.outputs.version }}
 
-      - name: npm release
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          cd mealz-shared-analytics/dist
-          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
-          npm publish
+      - name: Upload npm dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-dist
+          path: mealz-shared-analytics/dist
+          if-no-files-found: error
 
       - name: fastlane release
         run: fastlane release version:${{ steps.extract_version.outputs.version }} env:release
 
       - name: Restore version
         run: make restore_version_number
+
+  # Trusted publishing (OIDC) is only supported on GitHub-hosted runners.
+  npm-publish:
+    needs: merge-job
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Download npm dist
+        uses: actions/download-artifact@v4
+        with:
+          name: npm-dist
+          path: mealz-shared-analytics/dist
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
+
+      - name: Ensure npm supports trusted publishing
+        run: npm install -g npm@latest
+
+      - name: npm release
+        working-directory: mealz-shared-analytics/dist
+        run: npm publish
