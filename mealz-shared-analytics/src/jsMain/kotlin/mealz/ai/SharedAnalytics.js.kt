@@ -15,10 +15,11 @@ actual object SharedAnalytics : AbstractSharedAnalytics() {
         val init = RequestInit(
             method = "POST",
             headers,
-            body
+            body,
+            keepalive = true
         )
-        window.fetch(PLAUSIBLE_URL, init)
         window.fetch(analyticsUrl, init)
+        window.fetch(PLAUSIBLE_URL, init)
     }
 
     actual fun sendPlausibleRequest(plausiblePath: String, path: String, journey: String, plausibleProps: PlatformMap<String, String?>) {
