@@ -97,11 +97,11 @@ object EventService : EventSender {
 
         // ---------------------------------- PRODUCT ----------------------------------------------
         PlausibleDestinations.ENTRY_ADD.plausiblePath to propsOf(PlatformList("entry_name", "item_id", "ext_item_id", "item_ean", "product_quantity"), PlatformList("recipe_id")),
-        PlausibleDestinations.ENTRY_ADDED.plausiblePath to propsOf(PlatformList("entry_name", "item_id", "ext_item_id", "item_ean", "product_quantity"), PlatformList("recipe_id", "add_source", "mode")),
+        PlausibleDestinations.ENTRY_ADDED.plausiblePath to propsOf(PlatformList("entry_name", "item_id", "ext_item_id", "item_ean", "product_quantity"), PlatformList("recipe_id", "add_source", "mode", "product_base_price")),
         PlausibleDestinations.ENTRY_ADD_ALL.plausiblePath to propsOf(PlatformList("recipe_id", "entry_count"), PlatformList("total_products", "total_price")),
         PlausibleDestinations.ENTRY_ADD_ALL_AGAIN.plausiblePath to propsOf(PlatformList("recipe_id", "entry_count"), PlatformList()),
         PlausibleDestinations.ENTRY_DELETE.plausiblePath to propsOf(PlatformList("entry_name", "item_id", "ext_item_id", "item_ean", "product_quantity"), PlatformList("recipe_id")),
-        PlausibleDestinations.ENTRY_DELETED.plausiblePath to propsOf(PlatformList("entry_name", "item_id", "ext_item_id", "item_ean", "product_quantity"), PlatformList("recipe_id")),
+        PlausibleDestinations.ENTRY_DELETED.plausiblePath to propsOf(PlatformList("entry_name", "item_id", "ext_item_id", "item_ean", "product_quantity"), PlatformList("recipe_id", "product_base_price")),
         PlausibleDestinations.ENTRY_REPLACE.plausiblePath to propsOf(PlatformList("entry_name", "product_quantity"), PlatformList("item_id", "ext_item_id", "item_ean", "recipe_id", "status")),
         PlausibleDestinations.ENTRY_REPLACED.plausiblePath to propsOf(PlatformList("entry_name", "new_item_id", "new_item_ext_id", "new_item_ean"), PlatformList("old_item_id", "old_item_ext_id", "old_item_ean", "product_quantity", "search_term", "recipe_id")),
         PlausibleDestinations.ENTRY_CHANGE_QUANTITY.plausiblePath to propsOf(PlatformList("entry_name", "item_id", "ext_item_id", "item_ean", "product_quantity"), PlatformList("recipe_id")),

@@ -1,4 +1,5 @@
-## 4.13.2
+## 4.14.0
+[FEA] Added optional parameter `product_base_price` for `entry.added` and `entry.deleted` events
 [FIX] Use `keepalive` to send analytics events and avoid request cancellation
 
 ## 4.13.1
