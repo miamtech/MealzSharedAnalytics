@@ -1,3 +1,6 @@
+## 4.16.0
+[FEA] Added optional parameter `index`for `entry.added`, `entry.deleted` and `product.show` events
+
 ## 4.15.0
 [FEA] Added `product.show` event with parameters `entry_name`, `item_id`, `ext_item_id`, `item_ean`, `product_base_price`, `recipe_id`
 
